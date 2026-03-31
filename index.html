@@ -536,13 +536,6 @@
 </head>
 <body>
   <div class="site-shell">
-    <div class="topbar">
-      <div class="topbar-inner">
-        <span>Puente Security Group</span>
-        <span>Security Officer Training • Corporate Coming Soon Page</span>
-      </div>
-    </div>
-
     <header class="site-header" id="siteHeader">
       <div class="header-inner">
         <a href="#top" class="brand" aria-label="Puente Security Group home">
@@ -568,67 +561,65 @@
       <div class="main-inner">
         <section class="hero" aria-label="Coming soon page">
           <div class="panel hero-copy" id="overview">
-            <div class="eyebrow">Coming Soon • Mobile-Friendly • Interactive</div>
-            <h1>Professional Training Site Launching Soon</h1>
+            <div class="eyebrow">Coming Soon</div>
+            <h1>Puente Security Group</h1>
             <p class="lead">
-              A refined public-facing website for <strong>Puente Security Group</strong> is currently in development.
-              This page is built as a polished coming soon screen with interactive menus, responsive layout behavior,
-              and a strong corporate public-safety presentation.
+              Our website is coming soon. Puente Security Group provides professional training backed by 20+ years of experience in the security industry.
             </p>
 
             <div class="status-row">
-              <div class="status-pill">100% responsive layout</div>
-              <div class="status-pill">Interactive mobile menu</div>
-              <div class="status-pill">Centered image display</div>
+              <div class="status-pill">20+ Years Industry Experience</div>
+              <div class="status-pill">Taser, Handcuffing, OC</div>
+              <div class="status-pill">Unarmed, Report Writing, Situational Awareness</div>
             </div>
 
             <div class="hero-actions">
-              <button class="btn btn-primary" id="launchInfoBtn" type="button">View Launch Status</button>
-              <button class="btn btn-secondary" id="missionInfoBtn" type="button">View Mission</button>
+              <button class="btn btn-primary" id="launchInfoBtn" type="button">Training Offered</button>
+              <button class="btn btn-secondary" id="missionInfoBtn" type="button">Experience</button>
             </div>
 
             <div class="menu-grid" id="interactiveMenu">
-              <button class="menu-card active" type="button" data-title="Training Portal" data-text="The full site will feature officer training information, course outlines, enrollment workflows, and client-facing updates.">
-                <strong>Training Portal</strong>
-                <span>Planned course pages</span>
+              <button class="menu-card active" type="button" data-title="Defensive Tools Training" data-text="Taser, handcuffing, and OC training delivered with a professional, practical approach.">
+                <strong>Defensive Tools</strong>
+                <span>Taser, handcuffing, OC</span>
               </button>
-              <button class="menu-card" type="button" data-title="Standards & Policy" data-text="The launch version can include appearance standards, conduct expectations, reporting requirements, and site procedures.">
-                <strong>Standards & Policy</strong>
-                <span>Operational framework</span>
+              <button class="menu-card" type="button" data-title="Officer Development" data-text="Unarmed training, report writing, and situational awareness for officers who need a disciplined foundation.">
+                <strong>Officer Development</strong>
+                <span>Unarmed, reporting, awareness</span>
               </button>
-              <button class="menu-card" type="button" data-title="Officer Resources" data-text="Additional pages can support officer materials, guidance documents, shift-readiness tools, and supervisor notices.">
-                <strong>Officer Resources</strong>
-                <span>Tools and documents</span>
+              <button class="menu-card" type="button" data-title="Training Standards" data-text="Instruction focused on professionalism, field readiness, accountability, and practical application.">
+                <strong>Training Standards</strong>
+                <span>Professional readiness</span>
               </button>
             </div>
 
             <div class="detail-box" id="detailBox">
-              <strong>Training Portal</strong><br />
-              The full site will feature officer training information, course outlines, enrollment workflows, and client-facing updates.
+              <strong>Defensive Tools Training</strong><br />
+              Taser, handcuffing, and OC training delivered with a professional, practical approach.
             </div>
 
             <div class="quick-links" id="launch">
-              <button class="quick-link" id="contactShortcut" type="button">Training Inquiries</button>
-              <button class="quick-link" id="constructionShortcut" type="button">Construction Notice</button>
-              <button class="quick-link" id="mobileShortcut" type="button">Mobile Status</button>
+              <button class="quick-link" id="contactShortcut" type="button">Taser</button>
+              <button class="quick-link" id="constructionShortcut" type="button">Report Writing</button>
+              <button class="quick-link" id="mobileShortcut" type="button">Situational Awareness</button>
             </div>
 
-            <div class="countdown" aria-label="Launch readiness status">
+            <div class="countdown" aria-label="Training overview">
               <div class="countdown-box">
                 <strong>01</strong>
-                <span>Landing Page</span>
+                <span>Taser</span>
               </div>
               <div class="countdown-box">
                 <strong>02</strong>
-                <span>Training Pages</span>
+                <span>Handcuffing</span>
               </div>
               <div class="countdown-box">
                 <strong>03</strong>
-                <span>Resources</span>
+                <span>OC</span>
               </div>
               <div class="countdown-box">
                 <strong>04</strong>
-                <span>Launch Stages</span>
+                <span>Unarmed</span>
               </div>
             </div>
           </div>
@@ -640,7 +631,7 @@
               </div>
               <h2 class="coming-title">Coming Soon</h2>
               <p class="coming-text">
-                This website is being prepared for launch. The main graphic is centered and kept small for a cleaner, more professional presentation.
+                Training information and additional site sections will be available here soon.
               </p>
             </div>
           </div>
@@ -650,7 +641,7 @@
 
     <footer class="footer" id="contact">
       <div class="footer-inner">
-        <div><strong>Puente Security Group</strong> — Security Officer Training</div>
+        <div><strong>Puente Security Group</strong></div>
         <div>© 2026 All Rights Reserved</div>
       </div>
     </footer>
@@ -700,23 +691,23 @@
     });
 
     document.getElementById('launchInfoBtn').addEventListener('click', () => {
-      showToast('Launch status: landing page complete, expanded site sections coming next.');
+      showToast('Training offered: Taser, handcuffing, OC, unarmed training, report writing, and situational awareness.');
     });
 
     document.getElementById('missionInfoBtn').addEventListener('click', () => {
-      showToast('Mission: provide disciplined, professional security officer training with a strong operational standard.');
+      showToast('Puente Security Group brings 20+ years of experience in the security industry.');
     });
 
     document.getElementById('contactShortcut').addEventListener('click', () => {
-      showToast('Training inquiries section is ready for your future contact details or inquiry form.');
+      showToast('Taser training available.');
     });
 
     document.getElementById('constructionShortcut').addEventListener('click', () => {
-      showToast('Construction notice active: additional site sections are still being built.');
+      showToast('Report writing training available.');
     });
 
     document.getElementById('mobileShortcut').addEventListener('click', () => {
-      showToast('Mobile status: optimized for phone, tablet, and desktop display.');
+      showToast('Situational awareness training available.');
     });
   </script>
 </body>
