@@ -1,90 +1,93 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Puente Security Group | Security Officer Training</title>
-  <meta name="description" content="Puente Security Group provides professional security officer training with a disciplined, public-safety focused standard." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Puente Security Group | Coming Soon</title>
+  <meta name="description" content="Puente Security Group security officer training website coming soon." />
   <style>
     :root {
-      --navy: #0f2747;
-      --navy-2: #173a66;
-      --gold: #b08a39;
-      --gold-2: #d4b56a;
-      --slate: #5e6b78;
-      --light: #f4f7fa;
-      --white: #ffffff;
-      --border: #d8e0e8;
-      --shadow: 0 12px 32px rgba(15, 39, 71, 0.12);
-      --radius: 18px;
-      --max: 1180px;
+      --bg: #08131f;
+      --bg-soft: #0e1d2f;
+      --panel: rgba(255,255,255,0.08);
+      --panel-2: rgba(255,255,255,0.12);
+      --text: #f5f8fc;
+      --muted: #bfd0e2;
+      --accent: #c9a24d;
+      --accent-2: #e2c57a;
+      --line: rgba(255,255,255,0.14);
+      --shadow: 0 18px 50px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1100px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--light);
-      color: #14202b;
-      line-height: 1.55;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(201,162,77,0.14), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(201,162,77,0.1), transparent 30%),
+        linear-gradient(180deg, #07111b 0%, #0a1726 48%, #08131f 100%);
+      min-height: 100svh;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button, input { font: inherit; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .site-shell {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
 
     .topbar {
-      background: #08172b;
-      color: #dbe7f3;
-      font-size: 0.9rem;
-      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
     }
 
     .topbar-inner,
-    .nav-inner,
-    .hero-inner,
-    .section-inner,
+    .header-inner,
+    .main-inner,
     .footer-inner {
-      width: min(100% - 2rem, var(--max));
+      width: min(calc(100% - 1.2rem), var(--max));
       margin: 0 auto;
     }
 
     .topbar-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      color: var(--muted);
+      font-size: 0.88rem;
       flex-wrap: wrap;
     }
 
     .site-header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(15, 39, 71, 0.96);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      z-index: 30;
+      background: rgba(8,19,31,0.84);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .nav-inner {
+    .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.95rem 0;
       gap: 1rem;
+      padding: 0.9rem 0;
+      position: relative;
     }
 
     .brand {
@@ -97,62 +100,167 @@
     .brand-mark {
       width: 48px;
       height: 48px;
-      border-radius: 12px;
+      border-radius: 14px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      color: #1f1f1f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #1a1a1a;
       font-weight: 800;
-      letter-spacing: 0.06em;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
-    }
-
-    .brand-text {
-      min-width: 0;
+      letter-spacing: 0.08em;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+      flex: 0 0 auto;
     }
 
     .brand-title {
-      color: var(--white);
       font-size: 1rem;
       font-weight: 700;
-      letter-spacing: 0.02em;
+      line-height: 1.2;
     }
 
     .brand-subtitle {
-      color: #b7c7d8;
-      font-size: 0.84rem;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-top: 0.15rem;
     }
 
-    .nav-toggle {
+    .menu-toggle {
       display: none;
-      border: 1px solid rgba(255,255,255,0.2);
-      background: transparent;
-      color: var(--white);
-      border-radius: 12px;
-      padding: 0.7rem 0.9rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 0.95rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
       cursor: pointer;
-      font-weight: 700;
     }
 
-    .nav-links {
+    .nav-menu {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
+      gap: 0.4rem;
       flex-wrap: wrap;
     }
 
-    .nav-links a {
-      color: #e8eef5;
+    .nav-item,
+    .nav-button {
       padding: 0.8rem 1rem;
       border-radius: 999px;
-      transition: background 0.2s ease, transform 0.2s ease;
-      font-size: 0.95rem;
+      border: 1px solid transparent;
+      color: #eef4fb;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      background: rgba(255,255,255,0.1);
+    .nav-item:hover,
+    .nav-button:hover,
+    .nav-item:focus-visible,
+    .nav-button:focus-visible {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.08);
       transform: translateY(-1px);
+    }
+
+    .nav-button {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #1b222c;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+
+    main {
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 1.25rem 0 2rem;
+    }
+
+    .main-inner {
+      width: min(calc(100% - 1.2rem), var(--max));
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .hero-copy {
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(201,162,77,0.18), transparent 68%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(201,162,77,0.12);
+      border: 1px solid rgba(201,162,77,0.22);
+      color: #f2d999;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 0.9rem;
+      font-size: clamp(2.1rem, 5vw, 4.7rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin: 0;
+      font-size: 1.03rem;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .status-row {
+      margin-top: 1.25rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .status-pill {
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #edf4fb;
+      font-size: 0.92rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.3rem;
     }
 
     .btn {
@@ -160,557 +268,456 @@
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
-      padding: 0.95rem 1.2rem;
+      min-height: 48px;
+      padding: 0.9rem 1.15rem;
       border-radius: 999px;
-      border: none;
       cursor: pointer;
-      font-weight: 700;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      text-align: center;
     }
 
     .btn:hover,
     .btn:focus-visible {
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.22);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      color: #18222f;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #1c2330;
+      font-weight: 700;
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--white);
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
     }
 
-    .hero {
-      background:
-        linear-gradient(115deg, rgba(8, 23, 43, 0.9), rgba(15, 39, 71, 0.82)),
-        radial-gradient(circle at top right, rgba(212,181,106,0.12), transparent 35%);
-      color: var(--white);
-      overflow: hidden;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1.2fr 0.9fr;
-      gap: 2rem;
-      align-items: center;
-      min-height: 78vh;
-      padding: 3rem 0 4rem;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: rgba(212,181,106,0.14);
-      border: 1px solid rgba(212,181,106,0.28);
-      color: #f1d792;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    .hero h1 {
-      margin: 0 0 1rem;
-      font-size: clamp(2.2rem, 4vw, 4.6rem);
-      line-height: 1.02;
-      letter-spacing: -0.03em;
-    }
-
-    .hero p {
-      margin: 0 0 1.5rem;
-      color: #d8e3ef;
-      font-size: 1.06rem;
-      max-width: 62ch;
-    }
-
-    .hero-actions {
+    .hero-media {
+      padding: 1.35rem;
       display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero-stats {
+    .coming-card {
+      width: 100%;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .coming-image-wrap {
+      width: min(170px, 48vw);
+      margin: 0 auto 1rem;
+      padding: 0.65rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+
+    .coming-image-wrap img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .coming-title {
+      margin: 0 0 0.55rem;
+      font-size: 1.5rem;
+    }
+
+    .coming-text {
+      margin: 0;
+      color: var(--muted);
+      max-width: 34ch;
+    }
+
+    .menu-grid {
+      margin-top: 1.25rem;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-top: 1.75rem;
+      gap: 0.8rem;
     }
 
-    .stat {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px;
+    .menu-card {
       padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s ease, background 0.2s ease;
+      cursor: pointer;
     }
 
-    .stat strong {
+    .menu-card:hover,
+    .menu-card.active {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.09);
+    }
+
+    .menu-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.98rem;
+    }
+
+    .menu-card span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .detail-box {
+      margin-top: 1rem;
+      padding: 1rem 1.05rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eef4fb;
+      min-height: 88px;
+    }
+
+    .quick-links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    .quick-link {
+      padding: 0.75rem 0.9rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #eff5fb;
+    }
+
+    .countdown {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.7rem;
+    }
+
+    .countdown-box {
+      padding: 0.9rem 0.7rem;
+      border-radius: 18px;
+      text-align: center;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .countdown-box strong {
       display: block;
       font-size: 1.35rem;
       margin-bottom: 0.15rem;
     }
 
-    .hero-panel {
-      background: rgba(255,255,255,0.96);
-      color: #13202d;
-      border-radius: 24px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      position: relative;
-    }
-
-    .hero-panel::before {
-      content: "Training Division";
-      position: absolute;
-      top: -0.8rem;
-      right: 1rem;
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-2));
-      font-weight: 700;
-      font-size: 0.8rem;
-      color: #1c2631;
-    }
-
-    .panel-card {
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .panel-card img {
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-      background: #eef3f8;
-    }
-
-    .panel-card-body {
-      padding: 1rem;
-    }
-
-    .panel-list {
-      list-style: none;
-      margin: 1rem 0 0;
-      padding: 0;
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .panel-list li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 0.8rem 0.9rem;
-      border-radius: 14px;
-      background: #f6f9fc;
-      border: 1px solid #e2eaf2;
-    }
-
-    section {
-      padding: 4.5rem 0;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      align-items: end;
-      margin-bottom: 1.6rem;
-      flex-wrap: wrap;
-    }
-
-    .section-heading h2 {
-      margin: 0;
-      font-size: clamp(1.6rem, 2vw, 2.4rem);
-      color: var(--navy);
-    }
-
-    .section-heading p {
-      margin: 0;
-      max-width: 62ch;
-      color: var(--slate);
-    }
-
-    .grid {
-      display: grid;
-      gap: 1.25rem;
-    }
-
-    .grid-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .grid-2 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.35rem;
-      box-shadow: 0 6px 20px rgba(15,39,71,0.05);
-      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
-      border-color: #bdd0e3;
-    }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #edf3f9, #dfe8f2);
-      color: var(--navy);
-      font-size: 1.35rem;
-      margin-bottom: 1rem;
-    }
-
-    .card h3,
-    .course h3,
-    .info-box h3 {
-      margin: 0 0 0.6rem;
-      color: var(--navy);
-    }
-
-    .card p,
-    .course p,
-    .info-box p {
-      margin: 0;
-      color: var(--slate);
-    }
-
-    .course {
-      background: linear-gradient(180deg, #ffffff 0%, #f8fbfd 100%);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .course:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow);
-    }
-
-    .course-header {
-      padding: 1.2rem 1.2rem 0.8rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 1rem;
-    }
-
-    .badge {
-      padding: 0.4rem 0.7rem;
-      border-radius: 999px;
-      background: #edf3f8;
-      color: var(--navy);
-      font-size: 0.8rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .course-body {
-      padding: 0 1.2rem 1.2rem;
-    }
-
-    .course ul {
-      margin: 1rem 0 0;
-      padding-left: 1.1rem;
-      color: #314252;
-    }
-
-    .course-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem 1.2rem 1.2rem;
-      border-top: 1px solid #e6edf4;
-      flex-wrap: wrap;
-    }
-
-    .split-panel {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 1.25rem;
-      align-items: stretch;
-    }
-
-    .info-box {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.35rem;
-      box-shadow: 0 6px 20px rgba(15,39,71,0.05);
-    }
-
-    .construction-wrap {
-      background: linear-gradient(135deg, #fff9ea, #fff4cf);
-      border: 1px solid #ead8a0;
-      border-radius: 22px;
-      padding: 1.25rem;
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 1.2rem;
-      align-items: center;
-      box-shadow: 0 10px 26px rgba(176,138,57,0.12);
-    }
-
-    .construction-wrap img {
-      width: 100%;
-      border-radius: 16px;
-      border: 1px solid rgba(0,0,0,0.08);
-      background: rgba(255,255,255,0.65);
-      padding: 0.5rem;
-    }
-
-    .construction-wrap p {
-      color: #5f5125;
-    }
-
-    .notice-bar {
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.1rem;
-      border-radius: 16px;
-      background: #eff5fb;
-      border: 1px solid #d9e5f2;
-      flex-wrap: wrap;
-    }
-
-    .testimonials {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .testimonial {
-      display: none;
-      animation: fade 0.35s ease;
-    }
-
-    .testimonial.active {
-      display: block;
-    }
-
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .footer {
-      background: #08172b;
-      color: #d1dceb;
-      padding: 2.4rem 0;
+      flex-shrink: 0;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(12px);
+      margin-top: auto;
     }
 
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .footer h3,
-    .footer h4 {
-      color: var(--white);
-      margin-top: 0;
-    }
-
-    .footer ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      gap: 0.65rem;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      margin-top: 1.5rem;
-      padding-top: 1rem;
-      font-size: 0.92rem;
-      color: #b7c7d8;
+    .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      padding: 1rem 0 calc(1rem + env(safe-area-inset-bottom));
+      color: var(--muted);
+      font-size: 0.92rem;
       flex-wrap: wrap;
     }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    .footer strong { color: var(--text); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .back-to-top {
+    .toast {
       position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 30;
-      width: 48px;
-      height: 48px;
-      border: none;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: var(--white);
-      font-size: 1.1rem;
+      left: 50%;
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+      transform: translateX(-50%) translateY(24px);
+      background: rgba(9,17,27,0.94);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 0.9rem 1rem;
       box-shadow: var(--shadow);
-      cursor: pointer;
       opacity: 0;
-      visibility: hidden;
-      transform: translateY(12px);
-      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 50;
+      width: min(calc(100% - 1.5rem), 520px);
+      text-align: center;
     }
 
-    .back-to-top.show {
+    .toast.show {
       opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
     }
 
-    @media (max-width: 980px) {
-      .hero-inner,
-      .split-panel,
-      .footer-grid,
-      .grid-3,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-
+    @media (max-width: 960px) {
       .hero {
-        padding-top: 0.5rem;
-      }
-
-      .hero-inner {
-        min-height: auto;
-      }
-
-      .construction-wrap {
         grid-template-columns: 1fr;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
-    @media (max-width: 780px) {
-      .nav-toggle {
-        display: inline-flex;
-      }
+    @media (max-width: 760px) {
+      .menu-toggle { display: inline-flex; }
 
-      .nav-links {
-        position: absolute;
-        left: 1rem;
-        right: 1rem;
-        top: calc(100% + 0.4rem);
-        background: #102848;
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 18px;
-        padding: 0.65rem;
-        box-shadow: var(--shadow);
+      .nav-menu {
         display: none;
+        position: absolute;
+        top: calc(100% + 0.55rem);
+        left: 0;
+        right: 0;
         flex-direction: column;
         align-items: stretch;
+        padding: 0.65rem;
+        background: rgba(8,19,31,0.98);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
       }
 
-      .site-header.open .nav-links {
-        display: flex;
-      }
+      .site-header.open .nav-menu { display: flex; }
 
-      .nav-links a,
-      .nav-links .btn {
+      .nav-item,
+      .nav-button,
+      .btn {
         width: 100%;
-        justify-content: center;
       }
 
-      .hero-stats {
-        grid-template-columns: 1fr;
+      .hero-copy,
+      .hero-media {
+        padding: 1.1rem;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
     @media (max-width: 560px) {
       .topbar-inner,
-      .notice-bar,
-      .course-footer,
-      .section-heading {
-        align-items: start;
-      }
-
-      .hero h1 {
-        font-size: 2.15rem;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
+      .footer-inner,
       .hero-actions {
         flex-direction: column;
+        align-items: stretch;
       }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-title { font-size: 0.95rem; }
+      .brand-subtitle { font-size: 0.78rem; }
+      .coming-image-wrap { width: min(138px, 52vw); }
+      h1 { font-size: 2rem; }
+      .lead { font-size: 0.98rem; }
     }
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-inner">
-      <div>Professional Security Officer Training</div>
-      <div>Puente Security Group | Preparedness • Discipline • Readiness</div>
+  <div class="site-shell">
+    <div class="topbar">
+      <div class="topbar-inner">
+        <span>Puente Security Group</span>
+        <span>Security Officer Training • Corporate Coming Soon Page</span>
+      </div>
     </div>
+
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a href="#top" class="brand" aria-label="Puente Security Group home">
+          <div class="brand-mark">PS</div>
+          <div>
+            <div class="brand-title">Puente Security Group</div>
+            <div class="brand-subtitle">Security Officer Training</div>
+          </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navMenu">☰ Menu</button>
+
+        <nav class="nav-menu" id="navMenu">
+          <a class="nav-item" href="#overview">Overview</a>
+          <a class="nav-item" href="#launch">Launch</a>
+          <a class="nav-item" href="#contact">Contact</a>
+          <button class="nav-button" id="notifyBtn" type="button">Request Notification</button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <div class="main-inner">
+        <section class="hero" aria-label="Coming soon page">
+          <div class="panel hero-copy" id="overview">
+            <div class="eyebrow">Coming Soon • Mobile-Friendly • Interactive</div>
+            <h1>Professional Training Site Launching Soon</h1>
+            <p class="lead">
+              A refined public-facing website for <strong>Puente Security Group</strong> is currently in development.
+              This page is built as a polished coming soon screen with interactive menus, responsive layout behavior,
+              and a strong corporate public-safety presentation.
+            </p>
+
+            <div class="status-row">
+              <div class="status-pill">100% responsive layout</div>
+              <div class="status-pill">Interactive mobile menu</div>
+              <div class="status-pill">Centered image display</div>
+            </div>
+
+            <div class="hero-actions">
+              <button class="btn btn-primary" id="launchInfoBtn" type="button">View Launch Status</button>
+              <button class="btn btn-secondary" id="missionInfoBtn" type="button">View Mission</button>
+            </div>
+
+            <div class="menu-grid" id="interactiveMenu">
+              <button class="menu-card active" type="button" data-title="Training Portal" data-text="The full site will feature officer training information, course outlines, enrollment workflows, and client-facing updates.">
+                <strong>Training Portal</strong>
+                <span>Planned course pages</span>
+              </button>
+              <button class="menu-card" type="button" data-title="Standards & Policy" data-text="The launch version can include appearance standards, conduct expectations, reporting requirements, and site procedures.">
+                <strong>Standards & Policy</strong>
+                <span>Operational framework</span>
+              </button>
+              <button class="menu-card" type="button" data-title="Officer Resources" data-text="Additional pages can support officer materials, guidance documents, shift-readiness tools, and supervisor notices.">
+                <strong>Officer Resources</strong>
+                <span>Tools and documents</span>
+              </button>
+            </div>
+
+            <div class="detail-box" id="detailBox">
+              <strong>Training Portal</strong><br />
+              The full site will feature officer training information, course outlines, enrollment workflows, and client-facing updates.
+            </div>
+
+            <div class="quick-links" id="launch">
+              <button class="quick-link" id="contactShortcut" type="button">Training Inquiries</button>
+              <button class="quick-link" id="constructionShortcut" type="button">Construction Notice</button>
+              <button class="quick-link" id="mobileShortcut" type="button">Mobile Status</button>
+            </div>
+
+            <div class="countdown" aria-label="Launch readiness status">
+              <div class="countdown-box">
+                <strong>01</strong>
+                <span>Landing Page</span>
+              </div>
+              <div class="countdown-box">
+                <strong>02</strong>
+                <span>Training Pages</span>
+              </div>
+              <div class="countdown-box">
+                <strong>03</strong>
+                <span>Resources</span>
+              </div>
+              <div class="countdown-box">
+                <strong>04</strong>
+                <span>Launch Stages</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel hero-media">
+            <div class="coming-card">
+              <div class="coming-image-wrap">
+                <img src="image.png" alt="Small centered coming soon image for Puente Security Group" />
+              </div>
+              <h2 class="coming-title">Coming Soon</h2>
+              <p class="coming-text">
+                This website is being prepared for launch. The main graphic is centered and kept small for a cleaner, more professional presentation.
+              </p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer" id="contact">
+      <div class="footer-inner">
+        <div><strong>Puente Security Group</strong> — Security Officer Training</div>
+        <div>© 2026 All Rights Reserved</div>
+      </div>
+    </footer>
   </div>
 
-  <header class="site-header" id="siteHeader">
-    <div class="nav-inner">
-      <a href="#home" class="brand" aria-label="Puente Security Group home">
-        <div class="brand-mark">PS</div>
-        <div class="brand-text">
-          <div class="brand-title">Puente Security Group</div>
-          <div class="brand-subtitle">Security Officer Training Division</div>
-        </div>
-      </a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+  <script>
+    const siteHeader = document.getElementById('siteHeader');
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const toast = document.getElementById('toast');
+    const menuCards = document.querySelectorAll('.menu-card');
+    const detailBox = document.getElementById('detailBox');
 
-      <nav class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#training">Training</a>
-        <a href="#standards">Standards</a>
-        <a href="#updates">Updates</a>
-        <a href="#contact">Contact</a>
-        <button class="btn btn-primary" id="scheduleBtn">Request Training</button>
-      </nav>
-    </div>
-  </header>
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
 
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-inner">
-        <div class="reveal visible">
-          <span class="eyebrow">Corporate • Public Safety Style • Mobile Ready</span>
-          <h1>Structured Security Officer Training for Professional Readiness</h1>
-          <p>
-            Puente Security Group delivers disciplined, professional training built for security officers,
-            site teams, and contract personnel who require a clean operational standard, strong field presence,
-            and dependable reporting habits.
-          </p>
+    menuToggle.addEventListener('click', () => {
+      const open = siteHeader.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+    });
 
-          <div class="hero-actions">
-            <a
+    navMenu.querySelectorAll('a, button').forEach(item => {
+      item.addEventListener('click', () => {
+        siteHeader.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    menuCards.forEach(card => {
+      card.addEventListener('click', () => {
+        menuCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        detailBox.innerHTML = '<strong>' + card.dataset.title + '</strong><br />' + card.dataset.text;
+      });
+    });
+
+    document.getElementById('notifyBtn').addEventListener('click', () => {
+      showToast('Notification request placeholder: connect this button to your future form or email workflow.');
+    });
+
+    document.getElementById('launchInfoBtn').addEventListener('click', () => {
+      showToast('Launch status: landing page complete, expanded site sections coming next.');
+    });
+
+    document.getElementById('missionInfoBtn').addEventListener('click', () => {
+      showToast('Mission: provide disciplined, professional security officer training with a strong operational standard.');
+    });
+
+    document.getElementById('contactShortcut').addEventListener('click', () => {
+      showToast('Training inquiries section is ready for your future contact details or inquiry form.');
+    });
+
+    document.getElementById('constructionShortcut').addEventListener('click', () => {
+      showToast('Construction notice active: additional site sections are still being built.');
+    });
+
+    document.getElementById('mobileShortcut').addEventListener('click', () => {
+      showToast('Mobile status: optimized for phone, tablet, and desktop display.');
+    });
+  </script>
+</body>
+</html>
