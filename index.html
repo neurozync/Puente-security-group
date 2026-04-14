@@ -86,10 +86,24 @@ body {
 }
 
 .fc-event {
-  background: #1f5a96 !important;
-  border: none !important;
   color: #fff !important;
+  border: none !important;
   padding: 3px;
+}
+
+/* ============================= */
+/* STATUS COLORS (NEW)           */
+/* ============================= */
+.open {
+  background: #16a34a !important;
+}
+
+.limited {
+  background: #f59e0b !important;
+}
+
+.closed {
+  background: #dc2626 !important;
 }
 
 /* ============================= */
@@ -193,16 +207,12 @@ body {
 
 <script>
 
-/* ============================= */
-/* MODAL FUNCTIONS               */
-/* ============================= */
+/* CLOSE MODAL */
 function closeModal() {
   document.getElementById('modal').style.display = 'none';
 }
 
-/* ============================= */
-/* INIT CALENDAR                 */
-/* ============================= */
+/* INIT CALENDAR */
 document.addEventListener('DOMContentLoaded', function () {
 
   const isMobile = window.innerWidth < 600;
@@ -222,20 +232,24 @@ document.addEventListener('DOMContentLoaded', function () {
     events: [
 
       {
-        title: 'unarmed guard class',
+        title: 'Unarmed Guard Class',
         start: '2026-04-20T09:00:00',
         end: '2026-04-20T17:00:00',
+        classNames: ['closed'], // CHANGE: open / limited / closed
         extendedProps: {
-          description: 'Class Full'
+          description: 'Class Full',
+          status: 'CLOSED'
         }
       },
 
       {
-        title: 'handcuffing',
+        title: 'Handcuffing',
         start: '2026-04-27T10:00:00',
         end: '2026-04-27T14:00:00',
+        classNames: ['limited'],
         extendedProps: {
-          description: 'Class Full.'
+          description: 'Limited seating available.',
+          status: 'LIMITED'
         }
       },
 
@@ -243,8 +257,10 @@ document.addEventListener('DOMContentLoaded', function () {
         title: 'Taser',
         start: '2026-05-02T08:00:00',
         end: '2026-05-02T12:00:00',
+        classNames: ['open'],
         extendedProps: {
-          description: 'Class Full'
+          description: 'Spots available.',
+          status: 'OPEN'
         }
       }
 
@@ -254,7 +270,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.getElementById('modal-title').innerText = info.event.title;
       document.getElementById('modal-date').innerText = info.event.start.toLocaleString();
-      document.getElementById('modal-desc').innerText = info.event.extendedProps.description;
+
+      document.getElementById('modal-desc').innerText =
+        "Status: " + info.event.extendedProps.status + "\n\n" +
+        info.event.extendedProps.description;
 
       document.getElementById('modal').style.display = 'block';
     }
