@@ -37,7 +37,6 @@ body {
 
 .header-sub {
   font-size: 12px;
-  opacity: 0.85;
 }
 
 .card {
@@ -48,51 +47,85 @@ body {
   padding: 15px;
 }
 
-#calendar { width: 100%; }
-
-.fc-button {
-  background: #1f3a5f !important;
-  color: #fff !important;
-  border: none !important;
+/* 🔥 CLEAN FORM STYLE FIX */
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  box-sizing: border-box;
 }
 
-.fc-day-today {
-  background: #e8f0ff !important;
+form textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 
+/* 🔥 BUTTON FIX */
+.btn-primary {
+  background: #1f3a5f;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary:hover {
+  background: #162c47;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #000;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* 🔥 MODAL FIX */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   z-index: 9999;
 }
 
 .modal-box {
   background: #fff;
-  max-width: 400px;
-  margin: 20% auto;
+  max-width: 420px;
+  margin: 8% auto;
   padding: 20px;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-.close-btn {
-  margin-top: 10px;
-  padding: 8px;
-  background: #1f3a5f;
-  color: #fff;
-  border: none;
+.modal-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
 }
 
-.info {
-  font-size: 14px;
-  line-height: 1.5;
+.empty-msg {
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  color: #555;
 }
 
 .news-item {
   margin-bottom: 10px;
-  padding-bottom: 8px;
   border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
 }
 
 .news-item a {
@@ -104,13 +137,6 @@ body {
 .news-date {
   font-size: 12px;
   color: #555;
-}
-
-.empty-msg {
-  text-align: center;
-  font-weight: bold;
-  color: #555;
-  padding: 20px;
 }
 
 </style>
@@ -127,11 +153,11 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 CALENDAR (COLLAPSIBLE) -->
+  <!-- CALENDAR -->
   <div class="card">
     <h3 style="display:flex;justify-content:space-between;">
       Training Calendar
-      <button onclick="toggleCalendar()">Toggle</button>
+      <button onclick="toggleCalendar()" class="btn-primary" style="width:auto;padding:6px 10px;">Toggle</button>
     </h3>
 
     <div id="calendarWrapper" style="display:none;">
@@ -142,6 +168,7 @@ body {
   <!-- INFO -->
   <div class="card">
     <h3>Information</h3>
+
     <div class="info">
       <strong>General Information:</strong><br>
       All students must arrive 15 minutes early.<br>
@@ -159,7 +186,10 @@ body {
       Clases disponibles en español.
     </div>
 
-    <button onclick="openContact()">Contact / Request Training</button>
+    <button onclick="openContact()" class="btn-primary" style="margin-top:12px;">
+      Contact / Request Training
+    </button>
+
   </div>
 
   <!-- NEWS -->
@@ -174,15 +204,19 @@ body {
 <div id="contactModal" class="modal">
   <div class="modal-box">
 
+    <div class="modal-title">Contact / Training Request</div>
+
     <form action="https://formsubmit.co/Andr0idman062@gmail.com" method="POST">
+
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
 
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="tel" name="phone" placeholder="Phone">
-      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="name" placeholder="Full Name (Required)" required>
+      <input type="tel" name="phone" placeholder="Phone Number">
+      <input type="email" name="email" placeholder="Email (Required)" required>
 
       <select name="class_interest">
+        <option value="">Select Class</option>
         <option>Unarmed Guard Card</option>
         <option>Taser</option>
         <option>Handcuffing</option>
@@ -191,10 +225,11 @@ body {
         <option>Other</option>
       </select>
 
-      <textarea name="message" placeholder="Message"></textarea>
+      <textarea name="message" placeholder="Message" required></textarea>
 
-      <button type="submit">Submit</button>
-      <button type="button" onclick="closeContact()">Cancel</button>
+      <button type="submit" class="btn-primary">Submit Request</button>
+      <button type="button" onclick="closeContact()" class="btn-secondary">Cancel</button>
+
     </form>
 
   </div>
@@ -234,7 +269,7 @@ function closeContact() {
   document.getElementById('contactModal').style.display = 'none';
 }
 
-// NEWS FEED
+// NEWS
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
 .then(res => res.json())
 .then(data => {
@@ -248,7 +283,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine
   document.getElementById("newsFeed").innerHTML = html;
 });
 
-// ALERT (2 WEEKS)
+// ALERT
 const KEY = "notice";
 const TWO_WEEKS = 1209600000;
 let last = localStorage.getItem(KEY);
