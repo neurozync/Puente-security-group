@@ -64,11 +64,6 @@ body {
 
 .fc-button:hover { background: #162c47 !important; }
 .fc-day-today { background: #e8f0ff !important; }
-.fc-event { color: #fff !important; border: none !important; padding: 3px; }
-
-.open { background: #16a34a !important; }
-.limited { background: #f59e0b !important; }
-.closed { background: #dc2626 !important; }
 
 .modal {
   display: none;
@@ -104,6 +99,34 @@ body {
   line-height: 1.5;
 }
 
+.news-item {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.news-item a {
+  font-weight: bold;
+  color: #1f3a5f;
+  text-decoration: none;
+}
+
+.news-item a:hover {
+  text-decoration: underline;
+}
+
+.news-date {
+  font-size: 12px;
+  color: #555;
+}
+
+.empty-msg {
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+  padding: 20px;
+}
+
 @media (min-width: 768px) {
   .header-title { font-size: 22px; }
   .fc-toolbar-title { font-size: 18px !important; }
@@ -132,16 +155,15 @@ body {
     <h3>Information</h3>
 
     <div class="info">
-
       <strong>General Information:</strong><br>
       All students must arrive 15 minutes early.<br>
       Bring valid government-issued identification.<br>
       Contact the office for scheduling or questions.<br><br>
 
       <strong>Language Availability:</strong><br>
-      Select courses are offered in Spanish. Contact for availability.<br><br>
+      Select courses are offered in Spanish.<br><br>
 
-      <hr style="margin:10px 0;">
+      <hr>
 
       <strong>Información General:</strong><br>
       Todos los estudiantes deben llegar 15 minutos antes.<br>
@@ -149,8 +171,7 @@ body {
       Comuníquese con la oficina para programación o preguntas.<br><br>
 
       <strong>Disponibilidad de Idioma:</strong><br>
-      Algunas clases están disponibles en español. Comuníquese para más información.
-
+      Algunas clases están disponibles en español.
     </div>
 
     <button onclick="openContact()" style="
@@ -168,30 +189,22 @@ body {
 
   </div>
 
-</div>
-
-<!-- ORIGINAL MODAL -->
-<div id="modal" class="modal">
-  <div class="modal-box">
-    <div id="modal-title" class="modal-title"></div>
-    <div id="modal-date"></div>
-    <div id="modal-desc" style="margin-top:10px;"></div>
-    <button class="close-btn" onclick="closeModal()">Close</button>
+  <!-- 🔥 NEWS FEED (BOTTOM, CLEAN) -->
+  <div class="card">
+    <h3>Security Industry News</h3>
+    <div id="newsFeed">Loading updates...</div>
   </div>
+
 </div>
 
 <!-- CONTACT MODAL -->
 <div id="contactModal" class="modal">
   <div class="modal-box">
-
     <div class="modal-title">Contact / Training Request</div>
 
     <form action="https://formsubmit.co/Andr0idman062@gmail.com" method="POST">
-
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
-      <input type="hidden" name="_subject" value="New Training Inquiry">
-      <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_autoresponse" value="We received your request. Most responses are handled within 24–48 hours.">
 
       <input type="text" name="name" placeholder="Name (Required)" required style="width:100%;margin-top:8px;padding:8px;">
@@ -210,30 +223,18 @@ body {
 
       <textarea name="message" placeholder="Message" required style="width:100%;margin-top:8px;padding:8px;"></textarea>
 
-      <button type="submit" style="
-        margin-top:10px;
-        padding:10px;
-        width:100%;
-        background:#1f3a5f;
-        color:#fff;
-        border:none;
-      ">
+      <button type="submit" style="margin-top:10px;padding:10px;width:100%;background:#1f3a5f;color:#fff;border:none;">
         Submit Request
       </button>
 
       <button type="button" onclick="closeContact()" class="close-btn">
         Cancel
       </button>
-
     </form>
   </div>
 </div>
 
 <script>
-
-function closeModal() {
-  document.getElementById('modal').style.display = 'none';
-}
 
 function openContact() {
   document.getElementById('contactModal').style.display = 'block';
@@ -245,42 +246,56 @@ function closeContact() {
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const isMobile = window.innerWidth < 600;
+  const calendarEl = document.getElementById('calendar');
 
-  const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-
-    initialView: isMobile ? 'listMonth' : 'dayGridMonth',
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
     height: 'auto',
 
     headerToolbar: {
       left: 'prev,next today',
       center: 'title',
-      right: isMobile ? '' : 'dayGridMonth,timeGridWeek'
+      right: 'dayGridMonth,timeGridWeek'
     },
 
-    /* 🔥 NO CLASSES DISPLAYED */
     events: [],
 
-    eventClick: function(info) {
-
-      document.getElementById('modal-title').innerText = info.event.title;
-      document.getElementById('modal-date').innerText = info.event.start.toLocaleString();
-
-      document.getElementById('modal-desc').innerText =
-        "Status: " + info.event.extendedProps.status + "\n\n" +
-        info.event.extendedProps.description;
-
-      document.getElementById('modal').style.display = 'block';
+    datesSet: function() {
+      setTimeout(() => {
+        if (!calendar.getEvents().length) {
+          if (!document.getElementById("emptyMessage")) {
+            let msg = document.createElement("div");
+            msg.id = "emptyMessage";
+            msg.className = "empty-msg";
+            msg.innerText = "No upcoming training classes";
+            calendarEl.appendChild(msg);
+          }
+        }
+      }, 100);
     }
 
   });
 
   calendar.render();
 
-  window.onclick = function(e) {
-    if (e.target === document.getElementById('modal')) closeModal();
-    if (e.target === document.getElementById('contactModal')) closeContact();
-  };
+  // NEWS FEED
+  fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
+    .then(res => res.json())
+    .then(data => {
+      let html = "";
+      data.items.slice(0,5).forEach(item => {
+        html += `
+          <div class="news-item">
+            <a href="${item.link}" target="_blank">${item.title}</a>
+            <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
+          </div>
+        `;
+      });
+      document.getElementById("newsFeed").innerHTML = html;
+    })
+    .catch(() => {
+      document.getElementById("newsFeed").innerHTML = "Unable to load updates.";
+    });
 
 });
 
