@@ -48,9 +48,7 @@ body {
   padding: 15px;
 }
 
-#calendar {
-  width: 100%;
-}
+#calendar { width: 100%; }
 
 .fc-toolbar-title {
   font-size: 16px !important;
@@ -64,19 +62,9 @@ body {
   font-size: 12px !important;
 }
 
-.fc-button:hover {
-  background: #162c47 !important;
-}
-
-.fc-day-today {
-  background: #e8f0ff !important;
-}
-
-.fc-event {
-  color: #fff !important;
-  border: none !important;
-  padding: 3px;
-}
+.fc-button:hover { background: #162c47 !important; }
+.fc-day-today { background: #e8f0ff !important; }
+.fc-event { color: #fff !important; border: none !important; padding: 3px; }
 
 .open { background: #16a34a !important; }
 .limited { background: #f59e0b !important; }
@@ -142,13 +130,31 @@ body {
 
   <div class="card">
     <h3>Information</h3>
+
+    <!-- UPDATED INFO SECTION -->
     <div class="info">
+
+      <strong>General Information:</strong><br>
       All students must arrive 15 minutes early.<br>
       Bring valid government-issued identification.<br>
-      Contact the office for scheduling or questions.
+      Contact the office for scheduling or questions.<br><br>
+
+      <strong>Language Availability:</strong><br>
+      Select courses are offered in Spanish. Contact for availability.<br><br>
+
+      <hr style="margin:10px 0;">
+
+      <strong>Información General:</strong><br>
+      Todos los estudiantes deben llegar 15 minutos antes.<br>
+      Traiga una identificación válida emitida por el gobierno.<br>
+      Comuníquese con la oficina para programación o preguntas.<br><br>
+
+      <strong>Disponibilidad de Idioma:</strong><br>
+      Algunas clases están disponibles en español. Comuníquese para más información.
+
     </div>
 
-    <!-- CONTACT BUTTON ADDED -->
+    <!-- CONTACT BUTTON -->
     <button onclick="openContact()" style="
       margin-top:15px;
       padding:10px 14px;
@@ -176,7 +182,7 @@ body {
   </div>
 </div>
 
-<!-- CONTACT MODAL ADDED -->
+<!-- CONTACT MODAL -->
 <div id="contactModal" class="modal">
   <div class="modal-box">
 
@@ -254,38 +260,8 @@ document.addEventListener('DOMContentLoaded', function () {
       right: isMobile ? '' : 'dayGridMonth,timeGridWeek'
     },
 
-    events: [
-      {
-        title: 'Unarmed Guard Class',
-        start: '2026-04-20T09:00:00',
-        end: '2026-04-20T17:00:00',
-        classNames: ['closed'],
-        extendedProps: {
-          description: 'Class Full',
-          status: 'CLOSED'
-        }
-      },
-      {
-        title: 'Handcuffing',
-        start: '2026-04-27T10:00:00',
-        end: '2026-04-27T14:00:00',
-        classNames: ['closed'],
-        extendedProps: {
-          description: 'Class Full',
-          status: 'CLOSED'
-        }
-      },
-      {
-        title: 'Taser',
-        start: '2026-05-02T08:00:00',
-        end: '2026-05-02T12:00:00',
-        classNames: ['closed'],
-        extendedProps: {
-          description: 'Class Full',
-          status: 'CLOSED'
-        }
-      }
-    ],
+    /* 🔥 EVENTS REMOVED — CALENDAR NOW EMPTY */
+    events: [],
 
     eventClick: function(info) {
 
