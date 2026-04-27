@@ -6,68 +6,59 @@
 
 <title>Security Training Schedule</title>
 
-<link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.20/index.global.min.js"></script>
-
 <style>
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-  color: #1f2933;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #0f172a;
+  color: #e5e7eb;
 }
 
+/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px;
 }
 
+/* HEADER */
 .header {
-  background: #1f3a5f;
-  color: #fff;
-  padding: 15px;
+  background: linear-gradient(90deg, #0f172a, #1e293b);
+  border-bottom: 2px solid #334155;
+  padding: 18px 0;
 }
 
 .header-title {
-  font-size: 18px;
-  font-weight: bold;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .header-sub {
   font-size: 12px;
+  color: #94a3b8;
 }
 
+/* CARDS */
 .card {
-  background: #fff;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  margin-top: 15px;
-  padding: 15px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  animation: fadeInUp 0.4s ease;
 }
 
-/* 🔥 CLEAN FORM STYLE FIX */
-form input,
-form textarea,
-form select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  box-sizing: border-box;
+/* HEADINGS */
+h3 {
+  margin: 0 0 12px 0;
+  font-weight: 600;
 }
 
-form textarea {
-  min-height: 80px;
-  resize: vertical;
-}
-
-/* 🔥 BUTTON FIX */
+/* BUTTONS */
 .btn-primary {
-  background: #1f3a5f;
+  background: #2563eb;
   color: #fff;
   border: none;
   padding: 10px;
@@ -75,15 +66,16 @@ form textarea {
   cursor: pointer;
   width: 100%;
   margin-top: 10px;
+  font-weight: 500;
 }
 
 .btn-primary:hover {
-  background: #162c47;
+  background: #1d4ed8;
 }
 
 .btn-secondary {
-  background: #e5e7eb;
-  color: #000;
+  background: #334155;
+  color: #fff;
   border: none;
   padding: 10px;
   border-radius: 6px;
@@ -92,51 +84,98 @@ form textarea {
   margin-top: 8px;
 }
 
-/* 🔥 MODAL FIX */
+/* FORM */
+form input,
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: #fff;
+  font-size: 14px;
+}
+
+form textarea {
+  min-height: 80px;
+}
+
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
   z-index: 9999;
 }
 
 .modal-box {
-  background: #fff;
+  background: #1e293b;
   max-width: 420px;
   margin: 8% auto;
   padding: 20px;
   border-radius: 8px;
+  border: 1px solid #334155;
 }
 
 .modal-title {
   font-weight: bold;
   margin-bottom: 10px;
-  font-size: 16px;
 }
 
-.empty-msg {
+/* EMPTY STATE */
+.empty-state {
   text-align: center;
-  padding: 20px;
-  font-weight: bold;
-  color: #555;
+  padding: 40px 20px;
 }
 
+.pulse-icon {
+  font-size: 42px;
+  animation: pulse 1.8s infinite;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.empty-sub {
+  font-size: 13px;
+  color: #94a3b8;
+  margin-top: 8px;
+}
+
+/* NEWS */
 .news-item {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #334155;
   padding-bottom: 8px;
 }
 
 .news-item a {
-  font-weight: bold;
-  color: #1f3a5f;
+  color: #60a5fa;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .news-date {
   font-size: 12px;
-  color: #555;
+  color: #94a3b8;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 </style>
@@ -153,15 +192,17 @@ form textarea {
 
 <div class="container">
 
-  <!-- CALENDAR -->
+  <!-- TRAINING SECTION -->
   <div class="card">
-    <h3 style="display:flex;justify-content:space-between;">
-      Training Calendar
-      <button onclick="toggleCalendar()" class="btn-primary" style="width:auto;padding:6px 10px;">Toggle</button>
-    </h3>
+    <h3>Training Schedule</h3>
 
-    <div id="calendarWrapper" style="display:none;">
-      <div id="calendar"></div>
+    <div class="empty-state">
+      <div class="pulse-icon">📅</div>
+      <div class="empty-title">No Upcoming Classes</div>
+      <div class="empty-sub">
+        New training dates will be posted when available.<br>
+        Use the contact form to request availability.
+      </div>
     </div>
   </div>
 
@@ -169,27 +210,17 @@ form textarea {
   <div class="card">
     <h3>Information</h3>
 
-    <div class="info">
-      <strong>General Information:</strong><br>
+    <div>
       All students must arrive 15 minutes early.<br>
       Bring valid government-issued identification.<br><br>
 
       <strong>Language Availability:</strong><br>
-      Classes available in Spanish.<br><br>
-
-      <hr>
-
-      <strong>Información:</strong><br>
-      Todos los estudiantes deben llegar 15 minutos antes.<br>
-      Traiga identificación válida.<br><br>
-
-      Clases disponibles en español.
+      Some classes available in Spanish.
     </div>
 
-    <button onclick="openContact()" class="btn-primary" style="margin-top:12px;">
+    <button onclick="openContact()" class="btn-primary">
       Contact / Request Training
     </button>
-
   </div>
 
   <!-- NEWS -->
@@ -237,30 +268,7 @@ form textarea {
 
 <script>
 
-// CALENDAR
-document.addEventListener('DOMContentLoaded', function () {
-
-  const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
-    initialView: 'dayGridMonth',
-    events: [],
-    datesSet: function() {
-      if (!calendar.getEvents().length) {
-        document.getElementById('calendar').innerHTML += "<div class='empty-msg'>No upcoming training classes</div>";
-      }
-    }
-  });
-
-  calendar.render();
-
-});
-
-// TOGGLE
-function toggleCalendar() {
-  let el = document.getElementById("calendarWrapper");
-  el.style.display = el.style.display === "none" ? "block" : "none";
-}
-
-// CONTACT
+/* CONTACT MODAL */
 function openContact() {
   document.getElementById('contactModal').style.display = 'block';
 }
@@ -269,7 +277,7 @@ function closeContact() {
   document.getElementById('contactModal').style.display = 'none';
 }
 
-// NEWS
+/* NEWS FEED */
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
 .then(res => res.json())
 .then(data => {
@@ -283,14 +291,14 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine
   document.getElementById("newsFeed").innerHTML = html;
 });
 
-// ALERT
+/* ALERT */
 const KEY = "notice";
 const TWO_WEEKS = 1209600000;
 let last = localStorage.getItem(KEY);
 let now = Date.now();
 
 if (!last || now - last > TWO_WEEKS) {
-  alert("NOTICE:\n\nWe apologize for the previous lack of contact information.\n\nA contact form and security news section have now been added.\n\nPlease use the contact feature for inquiries.");
+  alert("NOTICE:\n\nContact form is now available for all inquiries.\n\nUse it to request training availability.");
   localStorage.setItem(KEY, now);
 }
 
