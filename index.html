@@ -15,68 +15,84 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background: #0f172a;
+  background:
+    radial-gradient(circle at top, #1f2937 0%, #020617 45%, #000 100%);
   color: #e5e7eb;
 }
 
+/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
 }
 
+/* HEADER */
 .header {
-  background: linear-gradient(90deg, #0f172a, #1e293b);
-  border-bottom: 2px solid #334155;
-  padding: 18px 0;
+  background: linear-gradient(90deg, #020617, #111827, #020617);
+  border-bottom: 2px solid #22c55e;
+  padding: 20px 0;
+  box-shadow: 0 0 18px rgba(34,197,94,0.25);
 }
 
 .header-title {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   text-align: center;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .header-sub {
   font-size: 12px;
-  color: #94a3b8;
+  color: #9ca3af;
   text-align: center;
+  margin-top: 4px;
+  letter-spacing: 1px;
 }
 
+/* CARDS */
 .card {
-  background: #1e293b;
+  background: rgba(15, 23, 42, 0.95);
   border: 1px solid #334155;
+  border-left: 4px solid #22c55e;
   border-radius: 8px;
   margin-top: 16px;
   padding: 16px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
 }
 
 h3 {
   margin: 0 0 12px 0;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+  color: #f8fafc;
 }
 
+/* BUTTONS */
 .btn-primary {
-  background: #2563eb;
+  background: linear-gradient(90deg, #14532d, #166534);
   color: #fff;
-  border: none;
+  border: 1px solid #22c55e;
   padding: 12px;
   border-radius: 6px;
   cursor: pointer;
   width: 100%;
-  margin-top: 10px;
-  font-weight: 500;
+  margin-top: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .btn-primary:hover {
-  background: #1d4ed8;
+  background: linear-gradient(90deg, #166534, #15803d);
 }
 
 .btn-secondary {
   background: #334155;
   color: #fff;
-  border: none;
+  border: 1px solid #475569;
   padding: 12px;
   border-radius: 6px;
   cursor: pointer;
@@ -95,15 +111,13 @@ form select {
   display: block;
   width: 100%;
   max-width: 100%;
-  box-sizing: border-box;
   padding: 12px;
   margin-top: 10px;
   border-radius: 6px;
   border: 1px solid #475569;
-  background: #0f172a;
+  background: #020617;
   color: #fff;
   font-size: 16px;
-  appearance: none;
 }
 
 form textarea {
@@ -116,25 +130,27 @@ form textarea {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.68);
+  background: rgba(0,0,0,0.75);
   z-index: 9999;
   overflow-y: auto;
-  padding: 16px;
+  padding: 12px;
 }
 
 .modal-box {
-  background: #1e293b;
+  background: #0f172a;
   width: 100%;
   max-width: 420px;
-  margin: 8vh auto;
+  margin: 6vh auto;
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #334155;
+  border: 1px solid #22c55e;
+  box-shadow: 0 0 22px rgba(34,197,94,0.25);
 }
 
 .modal-title {
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 10px;
+  text-transform: uppercase;
 }
 
 /* NEWS */
@@ -145,15 +161,66 @@ form textarea {
 }
 
 .news-item a {
-  color: #60a5fa;
+  color: #93c5fd;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .news-date {
   font-size: 12px;
   color: #94a3b8;
   margin-top: 3px;
+}
+
+/* SCANNER */
+.scanner-box {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #14532d;
+  background:
+    linear-gradient(rgba(34,197,94,0.05) 50%, rgba(0,0,0,0.15) 50%),
+    #020617;
+  background-size: 100% 6px;
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+
+.scanner-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  animation: scannerSweep 2.2s linear infinite;
+  box-shadow: 0 0 12px #22c55e;
+}
+
+.scanner-text {
+  font-size: 12px;
+  color: #86efac;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.scanner-dots::after {
+  content: "";
+  animation: dots 1.2s steps(4, end) infinite;
+}
+
+@keyframes scannerSweep {
+  0% { left: -100%; top: 0; }
+  50% { left: 100%; top: 50%; }
+  100% { left: -100%; top: 100%; }
+}
+
+@keyframes dots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: ""; }
 }
 
 /* MOBILE */
@@ -166,15 +233,9 @@ form textarea {
     padding: 14px;
   }
 
-  .modal {
-    padding: 10px;
-  }
-
   .modal-box {
-    width: 100%;
     max-width: 100%;
-    margin: 5vh auto;
-    padding: 14px;
+    margin: 4vh auto;
   }
 
   .header-title {
@@ -206,23 +267,16 @@ form textarea {
 
   <div class="card">
     <h3>Information</h3>
-
     <div>
       All students must arrive 15 minutes early.<br>
       Bring valid government-issued identification.<br><br>
 
       <strong>Language Availability:</strong><br>
-      Some classes available in Spanish.<br><br>
-
-      <strong>Instructor Qualifications:</strong><br>
-      State Licensed Security Instructor<br>
-      Defensive Tactics Certified<br>
-      Use-of-Force Certified<br>
-      Real-world operational experience
+      Algunos clases disponibles en español
     </div>
 
     <button onclick="openContact()" class="btn-primary">
-      Secure Your Training Slot
+      Contact for Training
     </button>
   </div>
 
@@ -245,15 +299,21 @@ form textarea {
   <div class="card">
     <h3>Line of Duty Incidents</h3>
 
-    <div style="font-size:12px;color:#94a3b8;margin-bottom:10px;">
-      Aggregated public reporting involving security guards, security officers, and private security incidents. Not official notifications.
+    <div class="scanner-box">
+      <div class="scanner-line"></div>
+      <div class="scanner-text">
+        Scanning active public reports<span class="scanner-dots"></span>
+      </div>
     </div>
 
-    <div id="incidentFeed">Loading...</div>
+    <div id="incidentFeed">
+      No security officer incidents found.
+    </div>
   </div>
 
 </div>
 
+<!-- CONTACT MODAL -->
 <div id="contactModal" class="modal">
   <div class="modal-box">
 
@@ -261,7 +321,7 @@ form textarea {
 
     <form action="https://formsubmit.co/Androidman062@gmail.com" method="POST">
 
-      <!-- SECURITY FEATURES -->
+      <!-- SECURITY FEATURES - DO NOT REMOVE -->
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
 
@@ -276,19 +336,6 @@ form textarea {
         <option>Taser</option>
         <option>Report Writing</option>
         <option>Situational Awareness</option>
-        <option>Other</option>
-      </select>
-
-      <select name="training_type">
-        <option>Individual</option>
-        <option>Company / Group</option>
-      </select>
-
-      <input type="date" name="preferred_date">
-
-      <select name="experience">
-        <option>New</option>
-        <option>Experienced</option>
       </select>
 
       <textarea name="message" placeholder="Message" required></textarea>
@@ -303,6 +350,7 @@ form textarea {
 
 <script>
 
+/* MODAL */
 function openContact() {
   document.getElementById('contactModal').style.display = 'block';
 }
@@ -318,7 +366,7 @@ window.onclick = function(event) {
   }
 };
 
-/* SECURITY INDUSTRY NEWS */
+/* SECURITY INDUSTRY NEWS - AUTOMATIC LIVE RSS */
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
 .then(res => res.json())
 .then(data => {
@@ -344,7 +392,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine
   document.getElementById("newsFeed").innerHTML = "News feed unavailable.";
 });
 
-/* LINE OF DUTY / SECURITY OFFICER INCIDENT FEED */
+/* LINE OF DUTY / SECURITY OFFICER INCIDENT FEED - AUTOMATIC GOOGLE NEWS RSS */
 const incidentKeywords = encodeURIComponent(`
 "security guard shot" OR
 "security officer shot" OR
@@ -404,7 +452,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/
   document.getElementById("incidentFeed").innerHTML = html;
 })
 .catch(() => {
-  document.getElementById("incidentFeed").innerHTML = "Incident feed unavailable.";
+  document.getElementById("incidentFeed").innerHTML = "No security officer incidents found.";
 });
 
 </script>
