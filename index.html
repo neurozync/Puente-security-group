@@ -50,20 +50,15 @@ body {
 
 #calendar { width: 100%; }
 
-.fc-toolbar-title {
-  font-size: 16px !important;
-  font-weight: bold;
-}
-
 .fc-button {
   background: #1f3a5f !important;
-  border: none !important;
   color: #fff !important;
-  font-size: 12px !important;
+  border: none !important;
 }
 
-.fc-button:hover { background: #162c47 !important; }
-.fc-day-today { background: #e8f0ff !important; }
+.fc-day-today {
+  background: #e8f0ff !important;
+}
 
 .modal {
   display: none;
@@ -79,11 +74,6 @@ body {
   margin: 20% auto;
   padding: 20px;
   border-radius: 6px;
-}
-
-.modal-title {
-  font-weight: bold;
-  margin-bottom: 10px;
 }
 
 .close-btn {
@@ -111,10 +101,6 @@ body {
   text-decoration: none;
 }
 
-.news-item a:hover {
-  text-decoration: underline;
-}
-
 .news-date {
   font-size: 12px;
   color: #555;
@@ -125,11 +111,6 @@ body {
   font-weight: bold;
   color: #555;
   padding: 20px;
-}
-
-@media (min-width: 768px) {
-  .header-title { font-size: 22px; }
-  .fc-toolbar-title { font-size: 18px !important; }
 }
 
 </style>
@@ -146,53 +127,45 @@ body {
 
 <div class="container">
 
+  <!-- 🔥 CALENDAR (COLLAPSIBLE) -->
   <div class="card">
-    <h3>Training Calendar</h3>
-    <div id="calendar"></div>
+    <h3 style="display:flex;justify-content:space-between;">
+      Training Calendar
+      <button onclick="toggleCalendar()">Toggle</button>
+    </h3>
+
+    <div id="calendarWrapper" style="display:none;">
+      <div id="calendar"></div>
+    </div>
   </div>
 
+  <!-- INFO -->
   <div class="card">
     <h3>Information</h3>
-
     <div class="info">
       <strong>General Information:</strong><br>
       All students must arrive 15 minutes early.<br>
-      Bring valid government-issued identification.<br>
-      Contact the office for scheduling or questions.<br><br>
+      Bring valid government-issued identification.<br><br>
 
       <strong>Language Availability:</strong><br>
-      Select courses are offered in Spanish.<br><br>
+      Classes available in Spanish.<br><br>
 
       <hr>
 
-      <strong>Información General:</strong><br>
+      <strong>Información:</strong><br>
       Todos los estudiantes deben llegar 15 minutos antes.<br>
-      Traiga una identificación válida emitida por el gobierno.<br>
-      Comuníquese con la oficina para programación o preguntas.<br><br>
+      Traiga identificación válida.<br><br>
 
-      <strong>Disponibilidad de Idioma:</strong><br>
-      Algunas clases están disponibles en español.
+      Clases disponibles en español.
     </div>
 
-    <button onclick="openContact()" style="
-      margin-top:15px;
-      padding:10px 14px;
-      background:#1f3a5f;
-      color:#fff;
-      border:none;
-      border-radius:4px;
-      font-weight:bold;
-      cursor:pointer;
-    ">
-      Contact / Request Training
-    </button>
-
+    <button onclick="openContact()">Contact / Request Training</button>
   </div>
 
-  <!-- 🔥 NEWS FEED (BOTTOM, CLEAN) -->
+  <!-- NEWS -->
   <div class="card">
     <h3>Security Industry News</h3>
-    <div id="newsFeed">Loading updates...</div>
+    <div id="newsFeed">Loading...</div>
   </div>
 
 </div>
@@ -200,19 +173,16 @@ body {
 <!-- CONTACT MODAL -->
 <div id="contactModal" class="modal">
   <div class="modal-box">
-    <div class="modal-title">Contact / Training Request</div>
 
     <form action="https://formsubmit.co/Andr0idman062@gmail.com" method="POST">
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
-      <input type="hidden" name="_autoresponse" value="We received your request. Most responses are handled within 24–48 hours.">
 
-      <input type="text" name="name" placeholder="Name (Required)" required style="width:100%;margin-top:8px;padding:8px;">
-      <input type="tel" name="phone" placeholder="Phone Number" style="width:100%;margin-top:8px;padding:8px;">
-      <input type="email" name="email" placeholder="Email (Required)" required style="width:100%;margin-top:8px;padding:8px;">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="tel" name="phone" placeholder="Phone">
+      <input type="email" name="email" placeholder="Email" required>
 
-      <select name="class_interest" style="width:100%;margin-top:8px;padding:8px;">
-        <option value="">Select Class</option>
+      <select name="class_interest">
         <option>Unarmed Guard Card</option>
         <option>Taser</option>
         <option>Handcuffing</option>
@@ -221,21 +191,41 @@ body {
         <option>Other</option>
       </select>
 
-      <textarea name="message" placeholder="Message" required style="width:100%;margin-top:8px;padding:8px;"></textarea>
+      <textarea name="message" placeholder="Message"></textarea>
 
-      <button type="submit" style="margin-top:10px;padding:10px;width:100%;background:#1f3a5f;color:#fff;border:none;">
-        Submit Request
-      </button>
-
-      <button type="button" onclick="closeContact()" class="close-btn">
-        Cancel
-      </button>
+      <button type="submit">Submit</button>
+      <button type="button" onclick="closeContact()">Cancel</button>
     </form>
+
   </div>
 </div>
 
 <script>
 
+// CALENDAR
+document.addEventListener('DOMContentLoaded', function () {
+
+  const calendar = new FullCalendar.Calendar(document.getElementById('calendar'), {
+    initialView: 'dayGridMonth',
+    events: [],
+    datesSet: function() {
+      if (!calendar.getEvents().length) {
+        document.getElementById('calendar').innerHTML += "<div class='empty-msg'>No upcoming training classes</div>";
+      }
+    }
+  });
+
+  calendar.render();
+
+});
+
+// TOGGLE
+function toggleCalendar() {
+  let el = document.getElementById("calendarWrapper");
+  el.style.display = el.style.display === "none" ? "block" : "none";
+}
+
+// CONTACT
 function openContact() {
   document.getElementById('contactModal').style.display = 'block';
 }
@@ -244,60 +234,30 @@ function closeContact() {
   document.getElementById('contactModal').style.display = 'none';
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-
-  const calendarEl = document.getElementById('calendar');
-
-  const calendar = new FullCalendar.Calendar(calendarEl, {
-    initialView: 'dayGridMonth',
-    height: 'auto',
-
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek'
-    },
-
-    events: [],
-
-    datesSet: function() {
-      setTimeout(() => {
-        if (!calendar.getEvents().length) {
-          if (!document.getElementById("emptyMessage")) {
-            let msg = document.createElement("div");
-            msg.id = "emptyMessage";
-            msg.className = "empty-msg";
-            msg.innerText = "No upcoming training classes";
-            calendarEl.appendChild(msg);
-          }
-        }
-      }, 100);
-    }
-
+// NEWS FEED
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
+.then(res => res.json())
+.then(data => {
+  let html = "";
+  data.items.slice(0,5).forEach(item => {
+    html += `<div class="news-item">
+      <a href="${item.link}" target="_blank">${item.title}</a>
+      <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
+    </div>`;
   });
-
-  calendar.render();
-
-  // NEWS FEED
-  fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
-    .then(res => res.json())
-    .then(data => {
-      let html = "";
-      data.items.slice(0,5).forEach(item => {
-        html += `
-          <div class="news-item">
-            <a href="${item.link}" target="_blank">${item.title}</a>
-            <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-          </div>
-        `;
-      });
-      document.getElementById("newsFeed").innerHTML = html;
-    })
-    .catch(() => {
-      document.getElementById("newsFeed").innerHTML = "Unable to load updates.";
-    });
-
+  document.getElementById("newsFeed").innerHTML = html;
 });
+
+// ALERT (2 WEEKS)
+const KEY = "notice";
+const TWO_WEEKS = 1209600000;
+let last = localStorage.getItem(KEY);
+let now = Date.now();
+
+if (!last || now - last > TWO_WEEKS) {
+  alert("NOTICE:\n\nWe apologize for the previous lack of contact information.\n\nA contact form and security news section have now been added.\n\nPlease use the contact feature for inquiries.");
+  localStorage.setItem(KEY, now);
+}
 
 </script>
 
