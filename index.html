@@ -8,6 +8,10 @@
 
 <style>
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Segoe UI", Roboto, Arial, sans-serif;
@@ -15,14 +19,12 @@ body {
   color: #e5e7eb;
 }
 
-/* CONTAINER */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   padding: 16px;
 }
 
-/* HEADER */
 .header {
   background: linear-gradient(90deg, #0f172a, #1e293b);
   border-bottom: 2px solid #334155;
@@ -41,7 +43,6 @@ body {
   text-align: center;
 }
 
-/* CARDS */
 .card {
   background: #1e293b;
   border: 1px solid #334155;
@@ -51,13 +52,11 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
-/* HEADINGS */
 h3 {
   margin: 0 0 12px 0;
   font-weight: 600;
 }
 
-/* BUTTONS */
 .btn-primary {
   background: #2563eb;
   color: #fff;
@@ -86,21 +85,30 @@ h3 {
 }
 
 /* FORM */
+form {
+  width: 100%;
+}
+
 form input,
 form textarea,
 form select {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 12px;
-  margin-top: 8px;
+  margin-top: 10px;
   border-radius: 6px;
   border: 1px solid #475569;
   background: #0f172a;
   color: #fff;
   font-size: 16px;
+  appearance: none;
 }
 
 form textarea {
-  min-height: 80px;
+  min-height: 90px;
+  resize: vertical;
 }
 
 /* MODAL */
@@ -108,27 +116,20 @@ form textarea {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.68);
   z-index: 9999;
   overflow-y: auto;
+  padding: 16px;
 }
 
 .modal-box {
   background: #1e293b;
-  width: 90%;
+  width: 100%;
   max-width: 420px;
-  margin: 10% auto;
+  margin: 8vh auto;
   padding: 16px;
   border-radius: 8px;
   border: 1px solid #334155;
-}
-
-@media (max-width: 500px) {
-  .modal-box {
-    width: 95%;
-    margin: 20% auto;
-    padding: 14px;
-  }
 }
 
 .modal-title {
@@ -152,6 +153,33 @@ form textarea {
 .news-date {
   font-size: 12px;
   color: #94a3b8;
+  margin-top: 3px;
+}
+
+/* MOBILE */
+@media (max-width: 500px) {
+  .container {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-box {
+    width: 100%;
+    max-width: 100%;
+    margin: 5vh auto;
+    padding: 14px;
+  }
+
+  .header-title {
+    font-size: 19px;
+  }
 }
 
 </style>
@@ -168,17 +196,14 @@ form textarea {
 
 <div class="container">
 
-  <!-- TRAINING -->
   <div class="card">
     <h3>Training Schedule</h3>
-
     <div>
-      Upcoming classes are currently being scheduled.<br><br>
+      There are no upcoming classes at this time.<br><br>
       Secure your spot early. Limited availability.
     </div>
   </div>
 
-  <!-- INFO -->
   <div class="card">
     <h3>Information</h3>
 
@@ -201,30 +226,27 @@ form textarea {
     </button>
   </div>
 
-  <!-- COURSES -->
   <div class="card">
     <h3>Available Training</h3>
     <ul>
       <li>Unarmed Guard Card</li>
-      <li>OC Spray Certification</li>
-      <li>Baton Certification</li>
-      <li>Handcuffing Techniques</li>
-      <li>Taser Certification</li>
+      <li>Handcuffing</li>
+      <li>Taser</li>
+      <li>Report Writing</li>
+      <li>Situational Awareness</li>
     </ul>
   </div>
 
-  <!-- NEWS -->
   <div class="card">
     <h3>Security Industry News</h3>
     <div id="newsFeed">Loading...</div>
   </div>
 
-  <!-- INCIDENTS -->
   <div class="card">
     <h3>Line of Duty Incidents</h3>
 
     <div style="font-size:12px;color:#94a3b8;margin-bottom:10px;">
-      Aggregated public reporting. Not official notifications.
+      Aggregated public reporting involving security guards, security officers, and private security incidents. Not official notifications.
     </div>
 
     <div id="incidentFeed">Loading...</div>
@@ -232,7 +254,6 @@ form textarea {
 
 </div>
 
-<!-- MODAL -->
 <div id="contactModal" class="modal">
   <div class="modal-box">
 
@@ -240,7 +261,7 @@ form textarea {
 
     <form action="https://formsubmit.co/Androidman062@gmail.com" method="POST">
 
-      <!-- SECURITY -->
+      <!-- SECURITY FEATURES -->
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
 
@@ -251,13 +272,13 @@ form textarea {
       <select name="class_interest">
         <option value="">Select Class</option>
         <option>Unarmed Guard Card</option>
-        <option>Taser</option>
         <option>Handcuffing</option>
-        <option>Baton</option>
-        <option>OC Spray</option>
+        <option>Taser</option>
+        <option>Report Writing</option>
+        <option>Situational Awareness</option>
+        <option>Other</option>
       </select>
 
-      <!-- NEW FIELDS -->
       <select name="training_type">
         <option>Individual</option>
         <option>Company / Group</option>
@@ -282,7 +303,6 @@ form textarea {
 
 <script>
 
-/* MODAL */
 function openContact() {
   document.getElementById('contactModal').style.display = 'block';
 }
@@ -291,13 +311,20 @@ function closeContact() {
   document.getElementById('contactModal').style.display = 'none';
 }
 
-/* NEWS FEED */
+window.onclick = function(event) {
+  const modal = document.getElementById('contactModal');
+  if (event.target === modal) {
+    closeContact();
+  }
+};
+
+/* SECURITY INDUSTRY NEWS */
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
 .then(res => res.json())
 .then(data => {
   let html = "";
 
-  if (!data.items) {
+  if (!data.items || data.items.length === 0) {
     document.getElementById("newsFeed").innerHTML = "No news available.";
     return;
   }
@@ -305,7 +332,7 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine
   data.items.slice(0,5).forEach(item => {
     html += `
       <div class="news-item">
-        <a href="${item.link}" target="_blank">${item.title}</a>
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
         <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
       </div>
     `;
@@ -317,21 +344,58 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine
   document.getElementById("newsFeed").innerHTML = "News feed unavailable.";
 });
 
-/* INCIDENT FEED (TARGETED KEYWORDS) */
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=security+guard+shot+OR+security+officer+killed+OR+security+guard+injured+OR+mall+security+shooting+OR+armed+security+incident")
+/* LINE OF DUTY / SECURITY OFFICER INCIDENT FEED */
+const incidentKeywords = encodeURIComponent(`
+"security guard shot" OR
+"security officer shot" OR
+"security guard killed" OR
+"security officer killed" OR
+"security guard injured" OR
+"security officer injured" OR
+"security guard attacked" OR
+"security officer attacked" OR
+"security guard assaulted" OR
+"security officer assaulted" OR
+"private security shooting" OR
+"private security officer shot" OR
+"private security officer killed" OR
+"private security guard injured" OR
+"armed security guard shot" OR
+"armed security officer shot" OR
+"unarmed security guard attacked" OR
+"unarmed security officer attacked" OR
+"mall security shooting" OR
+"hospital security officer attacked" OR
+"hospital security guard assaulted" OR
+"school security officer attacked" OR
+"apartment security guard shot" OR
+"nightclub security guard shot" OR
+"bar security guard shot" OR
+"store security guard attacked" OR
+"retail security guard assaulted" OR
+"loss prevention officer attacked" OR
+"security guard stabbed" OR
+"security officer stabbed" OR
+"security guard line of duty death" OR
+"security officer line of duty death" OR
+"security guard incident" OR
+"security officer incident"
+`);
+
+fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=" + incidentKeywords + "&hl=en-US&gl=US&ceid=US:en")
 .then(res => res.json())
 .then(data => {
   let html = "";
 
-  if (!data.items) {
-    document.getElementById("incidentFeed").innerHTML = "No incidents found.";
+  if (!data.items || data.items.length === 0) {
+    document.getElementById("incidentFeed").innerHTML = "No security officer incidents found.";
     return;
   }
 
-  data.items.slice(0,5).forEach(item => {
+  data.items.slice(0,8).forEach(item => {
     html += `
       <div class="news-item">
-        <a href="${item.link}" target="_blank">${item.title}</a>
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
         <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
       </div>
     `;
