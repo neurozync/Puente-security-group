@@ -8,9 +8,7 @@
 
 <style>
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -29,6 +27,7 @@ body {
 
 /* HEADER */
 .header {
+  position: relative;
   background: linear-gradient(90deg, #020617, #111827, #020617);
   border-bottom: 2px solid #22c55e;
   padding: 20px 0;
@@ -49,6 +48,20 @@ body {
   text-align: center;
   margin-top: 4px;
   letter-spacing: 1px;
+}
+
+/* LANGUAGE BUTTON */
+.lang-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: #334155;
+  border: 1px solid #475569;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 /* CARDS */
@@ -101,9 +114,7 @@ h3 {
 }
 
 /* FORM */
-form {
-  width: 100%;
-}
+form { width: 100%; }
 
 form input,
 form textarea,
@@ -225,22 +236,10 @@ form textarea {
 
 /* MOBILE */
 @media (max-width: 500px) {
-  .container {
-    padding: 12px;
-  }
-
-  .card {
-    padding: 14px;
-  }
-
-  .modal-box {
-    max-width: 100%;
-    margin: 4vh auto;
-  }
-
-  .header-title {
-    font-size: 19px;
-  }
+  .container { padding: 12px; }
+  .card { padding: 14px; }
+  .modal-box { max-width: 100%; margin: 4vh auto; }
+  .header-title { font-size: 19px; }
 }
 
 </style>
@@ -249,25 +248,28 @@ form textarea {
 <body>
 
 <div class="header">
+  <button class="lang-btn" onclick="toggleLang()">EN / ES</button>
   <div class="container">
-    <div class="header-title">Security Training</div>
-    <div class="header-sub">Official Course Schedule</div>
+    <div class="header-title" data-en="Security Training" data-es="Entrenamiento de Seguridad">Security Training</div>
+    <div class="header-sub" data-en="Official Course Schedule" data-es="Horario Oficial de Cursos">Official Course Schedule</div>
   </div>
 </div>
 
 <div class="container">
 
   <div class="card">
-    <h3>Training Schedule</h3>
-    <div>
+    <h3 data-en="Training Schedule" data-es="Horario de Entrenamiento">Training Schedule</h3>
+    <div data-en="There are no upcoming classes at this time.<br><br>Secure your spot early. Limited availability."
+         data-es="No hay clases programadas en este momento.<br><br>Asegure su lugar con anticipación. Cupo limitado.">
       There are no upcoming classes at this time.<br><br>
       Secure your spot early. Limited availability.
     </div>
   </div>
 
   <div class="card">
-    <h3>Information</h3>
-    <div>
+    <h3 data-en="Information" data-es="Información">Information</h3>
+    <div data-en="All students must arrive 15 minutes early.<br>Bring valid government-issued identification.<br><br><strong>Language Availability:</strong><br>Some classes available in Spanish"
+         data-es="Todos los estudiantes deben llegar 15 minutos antes.<br>Traiga una identificación válida emitida por el gobierno.<br><br><strong>Disponibilidad de idioma:</strong><br>Algunas clases disponibles en español">
       All students must arrive 15 minutes early.<br>
       Bring valid government-issued identification.<br><br>
 
@@ -275,19 +277,20 @@ form textarea {
       Algunos clases disponibles en español
     </div>
 
-    <button onclick="openContact()" class="btn-primary">
+    <button onclick="openContact()" class="btn-primary"
+      data-en="Contact for Training" data-es="Contacto para Entrenamiento">
       Contact for Training
     </button>
   </div>
 
   <div class="card">
-    <h3>Available Training</h3>
+    <h3 data-en="Available Training" data-es="Entrenamiento Disponible">Available Training</h3>
     <ul>
-      <li>Unarmed Guard Card</li>
-      <li>Handcuffing</li>
-      <li>Taser</li>
-      <li>Report Writing</li>
-      <li>Situational Awareness</li>
+      <li data-en="Unarmed Guard Card" data-es="Licencia de Guardia Desarmado">Unarmed Guard Card</li>
+      <li data-en="Handcuffing" data-es="Uso de Esposas">Handcuffing</li>
+      <li data-en="Taser" data-es="Taser">Taser</li>
+      <li data-en="Report Writing" data-es="Redacción de Informes">Report Writing</li>
+      <li data-en="Situational Awareness" data-es="Conciencia Situacional">Situational Awareness</li>
     </ul>
   </div>
 
@@ -317,11 +320,10 @@ form textarea {
 <div id="contactModal" class="modal">
   <div class="modal-box">
 
-    <div class="modal-title">Contact / Training Request</div>
+    <div class="modal-title" data-en="Contact / Training Request" data-es="Contacto / Solicitud de Entrenamiento">Contact / Training Request</div>
 
     <form action="https://formsubmit.co/Androidman062@gmail.com" method="POST">
 
-      <!-- SECURITY FEATURES - DO NOT REMOVE -->
       <input type="hidden" name="_captcha" value="true">
       <input type="text" name="_honey" style="display:none">
 
@@ -340,8 +342,8 @@ form textarea {
 
       <textarea name="message" placeholder="Message" required></textarea>
 
-      <button type="submit" class="btn-primary">Submit Request</button>
-      <button type="button" onclick="closeContact()" class="btn-secondary">Cancel</button>
+      <button type="submit" class="btn-primary" data-en="Submit Request" data-es="Enviar Solicitud">Submit Request</button>
+      <button type="button" onclick="closeContact()" class="btn-secondary" data-en="Cancel" data-es="Cancelar">Cancel</button>
 
     </form>
 
@@ -349,6 +351,17 @@ form textarea {
 </div>
 
 <script>
+
+/* LANGUAGE TOGGLE */
+let currentLang = "en";
+
+function toggleLang() {
+  currentLang = currentLang === "en" ? "es" : "en";
+
+  document.querySelectorAll("[data-en]").forEach(el => {
+    el.innerHTML = el.getAttribute("data-" + currentLang);
+  });
+}
 
 /* MODAL */
 function openContact() {
@@ -366,33 +379,29 @@ window.onclick = function(event) {
   }
 };
 
-/* SECURITY INDUSTRY NEWS - AUTOMATIC LIVE RSS */
+/* SECURITY INDUSTRY NEWS */
 fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
 .then(res => res.json())
 .then(data => {
   let html = "";
-
   if (!data.items || data.items.length === 0) {
     document.getElementById("newsFeed").innerHTML = "No news available.";
     return;
   }
-
   data.items.slice(0,5).forEach(item => {
     html += `
       <div class="news-item">
         <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
         <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-      </div>
-    `;
+      </div>`;
   });
-
   document.getElementById("newsFeed").innerHTML = html;
 })
 .catch(() => {
   document.getElementById("newsFeed").innerHTML = "News feed unavailable.";
 });
 
-/* LINE OF DUTY / SECURITY OFFICER INCIDENT FEED - AUTOMATIC GOOGLE NEWS RSS */
+/* INCIDENT FEED (UNCHANGED) */
 const incidentKeywords = encodeURIComponent(`
 "security guard shot" OR
 "security officer shot" OR
@@ -434,21 +443,17 @@ fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/
 .then(res => res.json())
 .then(data => {
   let html = "";
-
   if (!data.items || data.items.length === 0) {
     document.getElementById("incidentFeed").innerHTML = "No security officer incidents found.";
     return;
   }
-
   data.items.slice(0,8).forEach(item => {
     html += `
       <div class="news-item">
         <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
         <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-      </div>
-    `;
+      </div>`;
   });
-
   document.getElementById("incidentFeed").innerHTML = html;
 })
 .catch(() => {
