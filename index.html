@@ -4,241 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puente Security Group | Coming Soon</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    body {
-      background: #0b1118;
-      color: #ffffff;
-      min-height: 100vh;
-    }
-    .page {
-      min-height: 100vh;
-      background:
-        linear-gradient(rgba(5, 10, 18, 0.86), rgba(5, 10, 18, 0.92)),
-        url("https://images.unsplash.com/photo-1581092921461-39b2f2f8a7cb?auto=format&fit=crop&w=1600&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      flex-direction: column;
-    }
-    header {
-      padding: 24px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-      background: rgba(8, 16, 28, 0.85);
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .badge {
-      width: 52px;
-      height: 52px;
-      border: 2px solid #c9a227;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      color: #c9a227;
-      letter-spacing: 1px;
-    }
-    .brand h1 {
-      font-size: 1.35rem;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-    }
-    .brand span {
-      display: block;
-      font-size: 0.75rem;
-      color: #b9c0c9;
-      letter-spacing: 2px;
-      margin-top: 3px;
-    }
-    nav {
-      font-size: 0.85rem;
-      color: #c9a227;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: bold;
-    }
-    main {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      padding: 60px 8%;
-    }
-    .content {
-      max-width: 850px;
-    }
-    .label {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid #c9a227;
-      color: #c9a227;
-      font-size: 0.78rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      background: rgba(201, 162, 39, 0.08);
-    }
-    h2 {
-      font-size: clamp(2.7rem, 6vw, 5.6rem);
-      line-height: 0.95;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 26px;
-    }
-    h2 span {
-      color: #c9a227;
-    }
-    .subtext {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: #d4d8dd;
-      max-width: 720px;
-      margin-bottom: 34px;
-    }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 14px;
-      margin: 34px 0;
-      max-width: 780px;
-    }
-    .service {
-      border-left: 4px solid #c9a227;
-      background: rgba(255,255,255,0.06);
-      padding: 16px;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #f0f2f5;
-      font-weight: bold;
-    }
-    .notice {
-      margin-top: 28px;
-      padding: 22px;
-      background: rgba(7, 13, 22, 0.82);
-      border: 1px solid rgba(201, 162, 39, 0.35);
-      max-width: 760px;
-    }
-    .notice h3 {
-      color: #c9a227;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-size: 1rem;
-      margin-bottom: 10px;
-    }
-    .notice p {
-      color: #c7ccd3;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-    .contact {
-      margin-top: 34px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    .contact a {
-      text-decoration: none;
-      color: #08101c;
-      background: #c9a227;
-      padding: 14px 22px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .contact .secondary {
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-    }
-    footer {
-      padding: 18px 8%;
-      background: #060b12;
-      color: #848c96;
-      font-size: 0.8rem;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
-    @media (max-width: 700px) {
-      header {
-        flex-direction: column;
-        gap: 14px;
-        align-items: flex-start;
-      }
-      main {
-        padding-top: 45px;
-      }
-      footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="brand">
-        <div class="badge">PSG</div>
-        <div>
-          <h1>Puente Security Group</h1>
-          <span>Protection • Security • Integrity</span>
-        </div>
+
+  <main class="hero">
+    <div class="overlay"></div>
+
+    <section class="content">
+      <div class="badge">SECURITY OPERATIONS</div>
+
+      <h1>PUENTE SECURITY GROUP</h1>
+
+      <p class="subtitle">
+        Professional Security Services • Protective Operations • Site Security
+      </p>
+
+      <div class="status-box">
+        <span class="pulse"></span>
+        <p>Website Under Construction</p>
       </div>
-      <nav>Website Under Construction</nav>
-    </header>
-    <main>
-      <section class="content">
-        <div class="label">Coming Soon</div>
-        <h2>
-          Professional Security<br />
-          <span>Built on Discipline</span>
-        </h2>
-        <p class="subtext">
-          Puente Security Group is preparing to launch a professional security agency
-          focused on dependable protection, strong presence, and mission-ready service
-          for clients who expect order, professionalism, and accountability.
-        </p>
-        <div class="services">
-          <div class="service">Armed Security</div>
-          <div class="service">Unarmed Security</div>
-          <div class="service">Property Protection</div>
-          <div class="service">Event Security</div>
-          <div class="service">Mobile Patrol</div>
-          <div class="service">Executive Presence</div>
-        </div>
-        <div class="notice">
-          <h3>Site Currently Under Construction</h3>
-          <p>
-            Our full website is being developed. Puente Security Group will soon provide
-            information regarding services, coverage areas, licensing, contact options,
-            and client onboarding.
-          </p>
-        </div>
-        <div class="contact">
-          <a href="mailto:info@puentesecuritygroup.com">Contact Us</a>
-          <a class="secondary" href="#">Licensing Information Coming Soon</a>
-        </div>
-      </section>
-    </main>
-    <footer>
-      <div>© 2026 Puente Security Group. All Rights Reserved.</div>
-      <div>Professional Security Services | Coming Soon</div>
-    </footer>
-  </div>
+
+      <p class="message">
+        Our official website is coming soon. Puente Security Group is preparing a secure,
+        professional online presence built for clients, partners, and operational readiness.
+      </p>
+
+      <div class="divider"></div>
+
+      <p class="footer-text">
+        Integrity • Vigilance • Protection
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
