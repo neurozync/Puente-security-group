@@ -1,466 +1,248 @@
+Below is a full one-page under construction / coming soon website for Puente Security Group.
+
+Save as: index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Security Training Schedule</title>
-
-<style>
-
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  background:
-    radial-gradient(circle at top, #1f2937 0%, #020617 45%, #000 100%);
-  color: #e5e7eb;
-}
-
-/* CONTAINER */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 16px;
-}
-
-/* HEADER */
-.header {
-  position: relative;
-  background: linear-gradient(90deg, #020617, #111827, #020617);
-  border-bottom: 2px solid #22c55e;
-  padding: 20px 0;
-  box-shadow: 0 0 18px rgba(34,197,94,0.25);
-}
-
-.header-title {
-  font-size: 22px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.header-sub {
-  font-size: 12px;
-  color: #9ca3af;
-  text-align: center;
-  margin-top: 4px;
-  letter-spacing: 1px;
-}
-
-/* LANGUAGE BUTTON */
-.lang-btn {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  background: #334155;
-  border: 1px solid #475569;
-  color: #fff;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-/* CARDS */
-.card {
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid #334155;
-  border-left: 4px solid #22c55e;
-  border-radius: 8px;
-  margin-top: 16px;
-  padding: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
-}
-
-h3 {
-  margin: 0 0 12px 0;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-size: 15px;
-  color: #f8fafc;
-}
-
-/* BUTTONS */
-.btn-primary {
-  background: linear-gradient(90deg, #14532d, #166534);
-  color: #fff;
-  border: 1px solid #22c55e;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(90deg, #166534, #15803d);
-}
-
-.btn-secondary {
-  background: #334155;
-  color: #fff;
-  border: 1px solid #475569;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 8px;
-}
-
-/* FORM */
-form { width: 100%; }
-
-form input,
-form textarea,
-form select {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  border-radius: 6px;
-  border: 1px solid #475569;
-  background: #020617;
-  color: #fff;
-  font-size: 16px;
-}
-
-form textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-  z-index: 9999;
-  overflow-y: auto;
-  padding: 12px;
-}
-
-.modal-box {
-  background: #0f172a;
-  width: 100%;
-  max-width: 420px;
-  margin: 6vh auto;
-  padding: 16px;
-  border-radius: 8px;
-  border: 1px solid #22c55e;
-  box-shadow: 0 0 22px rgba(34,197,94,0.25);
-}
-
-.modal-title {
-  font-weight: 700;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-
-/* NEWS */
-.news-item {
-  margin-bottom: 12px;
-  border-bottom: 1px solid #334155;
-  padding-bottom: 8px;
-}
-
-.news-item a {
-  color: #93c5fd;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.news-date {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 3px;
-}
-
-/* SCANNER */
-.scanner-box {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #14532d;
-  background:
-    linear-gradient(rgba(34,197,94,0.05) 50%, rgba(0,0,0,0.15) 50%),
-    #020617;
-  background-size: 100% 6px;
-  border-radius: 8px;
-  padding: 14px;
-  margin-bottom: 12px;
-}
-
-.scanner-line {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #22c55e, transparent);
-  animation: scannerSweep 2.2s linear infinite;
-  box-shadow: 0 0 12px #22c55e;
-}
-
-.scanner-text {
-  font-size: 12px;
-  color: #86efac;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.scanner-dots::after {
-  content: "";
-  animation: dots 1.2s steps(4, end) infinite;
-}
-
-@keyframes scannerSweep {
-  0% { left: -100%; top: 0; }
-  50% { left: 100%; top: 50%; }
-  100% { left: -100%; top: 100%; }
-}
-
-@keyframes dots {
-  0% { content: ""; }
-  25% { content: "."; }
-  50% { content: ".."; }
-  75% { content: "..."; }
-  100% { content: ""; }
-}
-
-/* MOBILE */
-@media (max-width: 500px) {
-  .container { padding: 12px; }
-  .card { padding: 14px; }
-  .modal-box { max-width: 100%; margin: 4vh auto; }
-  .header-title { font-size: 19px; }
-}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puente Security Group | Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    body {
+      background: #0b1118;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(5, 10, 18, 0.86), rgba(5, 10, 18, 0.92)),
+        url("https://images.unsplash.com/photo-1581092921461-39b2f2f8a7cb?auto=format&fit=crop&w=1600&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 24px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      background: rgba(8, 16, 28, 0.85);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .badge {
+      width: 52px;
+      height: 52px;
+      border: 2px solid #c9a227;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: #c9a227;
+      letter-spacing: 1px;
+    }
+    .brand h1 {
+      font-size: 1.35rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .brand span {
+      display: block;
+      font-size: 0.75rem;
+      color: #b9c0c9;
+      letter-spacing: 2px;
+      margin-top: 3px;
+    }
+    nav {
+      font-size: 0.85rem;
+      color: #c9a227;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 60px 8%;
+    }
+    .content {
+      max-width: 850px;
+    }
+    .label {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #c9a227;
+      color: #c9a227;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      background: rgba(201, 162, 39, 0.08);
+    }
+    h2 {
+      font-size: clamp(2.7rem, 6vw, 5.6rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 26px;
+    }
+    h2 span {
+      color: #c9a227;
+    }
+    .subtext {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #d4d8dd;
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin: 34px 0;
+      max-width: 780px;
+    }
+    .service {
+      border-left: 4px solid #c9a227;
+      background: rgba(255,255,255,0.06);
+      padding: 16px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #f0f2f5;
+      font-weight: bold;
+    }
+    .notice {
+      margin-top: 28px;
+      padding: 22px;
+      background: rgba(7, 13, 22, 0.82);
+      border: 1px solid rgba(201, 162, 39, 0.35);
+      max-width: 760px;
+    }
+    .notice h3 {
+      color: #c9a227;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+    .notice p {
+      color: #c7ccd3;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    .contact {
+      margin-top: 34px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .contact a {
+      text-decoration: none;
+      color: #08101c;
+      background: #c9a227;
+      padding: 14px 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .contact .secondary {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+    footer {
+      padding: 18px 8%;
+      background: #060b12;
+      color: #848c96;
+      font-size: 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    @media (max-width: 700px) {
+      header {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      main {
+        padding-top: 45px;
+      }
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="header">
-  <button class="lang-btn" onclick="toggleLang()">EN / ES</button>
-  <div class="container">
-    <div class="header-title" data-en="Security Training" data-es="Entrenamiento de Seguridad">Security Training</div>
-    <div class="header-sub" data-en="Official Course Schedule" data-es="Horario Oficial de Cursos">Official Course Schedule</div>
-  </div>
-</div>
-
-<div class="container">
-
-  <div class="card">
-    <h3 data-en="Training Schedule" data-es="Horario de Entrenamiento">Training Schedule</h3>
-    <div data-en="There are no upcoming classes at this time.<br><br>Secure your spot early. Limited availability."
-         data-es="No hay clases programadas en este momento.<br><br>Asegure su lugar con anticipación. Cupo limitado.">
-      There are no upcoming classes at this time.<br><br>
-      Secure your spot early. Limited availability.
-    </div>
-  </div>
-
-  <div class="card">
-    <h3 data-en="Information" data-es="Información">Information</h3>
-    <div data-en="All students must arrive 15 minutes early.<br>Bring valid government-issued identification.<br><br><strong>Language Availability:</strong><br>Some classes available in Spanish"
-         data-es="Todos los estudiantes deben llegar 15 minutos antes.<br>Traiga una identificación válida emitida por el gobierno.<br><br><strong>Disponibilidad de idioma:</strong><br>Algunas clases disponibles en español">
-      All students must arrive 15 minutes early.<br>
-      Bring valid government-issued identification.<br><br>
-
-      <strong>Language Availability:</strong><br>
-      Algunos clases disponibles en español
-    </div>
-
-    <button onclick="openContact()" class="btn-primary"
-      data-en="Contact for Training" data-es="Contacto para Entrenamiento">
-      Contact for Training
-    </button>
-  </div>
-
-  <div class="card">
-    <h3 data-en="Available Training" data-es="Entrenamiento Disponible">Available Training</h3>
-    <ul>
-      <li data-en="Unarmed Guard Card" data-es="Licencia de Guardia Desarmado">Unarmed Guard Card</li>
-      <li data-en="Handcuffing" data-es="Uso de Esposas">Handcuffing</li>
-      <li data-en="Taser" data-es="Taser">Taser</li>
-      <li data-en="Report Writing" data-es="Redacción de Informes">Report Writing</li>
-      <li data-en="Situational Awareness" data-es="Conciencia Situacional">Situational Awareness</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h3>Security Industry News</h3>
-    <div id="newsFeed">Loading...</div>
-  </div>
-
-  <div class="card">
-    <h3>Line of Duty Incidents</h3>
-
-    <div class="scanner-box">
-      <div class="scanner-line"></div>
-      <div class="scanner-text">
-        Scanning active public reports<span class="scanner-dots"></span>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="badge">PSG</div>
+        <div>
+          <h1>Puente Security Group</h1>
+          <span>Protection • Security • Integrity</span>
+        </div>
       </div>
-    </div>
-
-    <div id="incidentFeed">
-      No security officer incidents found.
-    </div>
+      <nav>Website Under Construction</nav>
+    </header>
+    <main>
+      <section class="content">
+        <div class="label">Coming Soon</div>
+        <h2>
+          Professional Security<br />
+          <span>Built on Discipline</span>
+        </h2>
+        <p class="subtext">
+          Puente Security Group is preparing to launch a professional security agency
+          focused on dependable protection, strong presence, and mission-ready service
+          for clients who expect order, professionalism, and accountability.
+        </p>
+        <div class="services">
+          <div class="service">Armed Security</div>
+          <div class="service">Unarmed Security</div>
+          <div class="service">Property Protection</div>
+          <div class="service">Event Security</div>
+          <div class="service">Mobile Patrol</div>
+          <div class="service">Executive Presence</div>
+        </div>
+        <div class="notice">
+          <h3>Site Currently Under Construction</h3>
+          <p>
+            Our full website is being developed. Puente Security Group will soon provide
+            information regarding services, coverage areas, licensing, contact options,
+            and client onboarding.
+          </p>
+        </div>
+        <div class="contact">
+          <a href="mailto:info@puentesecuritygroup.com">Contact Us</a>
+          <a class="secondary" href="#">Licensing Information Coming Soon</a>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div>© 2026 Puente Security Group. All Rights Reserved.</div>
+      <div>Professional Security Services | Coming Soon</div>
+    </footer>
   </div>
-
-</div>
-
-<!-- CONTACT MODAL -->
-<div id="contactModal" class="modal">
-  <div class="modal-box">
-
-    <div class="modal-title" data-en="Contact / Training Request" data-es="Contacto / Solicitud de Entrenamiento">Contact / Training Request</div>
-
-    <form action="https://formsubmit.co/Androidman062@gmail.com" method="POST">
-
-      <input type="hidden" name="_captcha" value="true">
-      <input type="text" name="_honey" style="display:none">
-
-      <input type="text" name="name" placeholder="Full Name (Required)" required>
-      <input type="tel" name="phone" placeholder="Phone Number">
-      <input type="email" name="email" placeholder="Email (Required)" required>
-
-      <select name="class_interest">
-        <option value="">Select Class</option>
-        <option>Unarmed Guard Card</option>
-        <option>Handcuffing</option>
-        <option>Taser</option>
-        <option>Report Writing</option>
-        <option>Situational Awareness</option>
-      </select>
-
-      <textarea name="message" placeholder="Message" required></textarea>
-
-      <button type="submit" class="btn-primary" data-en="Submit Request" data-es="Enviar Solicitud">Submit Request</button>
-      <button type="button" onclick="closeContact()" class="btn-secondary" data-en="Cancel" data-es="Cancelar">Cancel</button>
-
-    </form>
-
-  </div>
-</div>
-
-<script>
-
-/* LANGUAGE TOGGLE */
-let currentLang = "en";
-
-function toggleLang() {
-  currentLang = currentLang === "en" ? "es" : "en";
-
-  document.querySelectorAll("[data-en]").forEach(el => {
-    el.innerHTML = el.getAttribute("data-" + currentLang);
-  });
-}
-
-/* MODAL */
-function openContact() {
-  document.getElementById('contactModal').style.display = 'block';
-}
-
-function closeContact() {
-  document.getElementById('contactModal').style.display = 'none';
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById('contactModal');
-  if (event.target === modal) {
-    closeContact();
-  }
-};
-
-/* SECURITY INDUSTRY NEWS */
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://www.securitymagazine.com/rss/topic/2236-guard-services")
-.then(res => res.json())
-.then(data => {
-  let html = "";
-  if (!data.items || data.items.length === 0) {
-    document.getElementById("newsFeed").innerHTML = "No news available.";
-    return;
-  }
-  data.items.slice(0,5).forEach(item => {
-    html += `
-      <div class="news-item">
-        <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
-        <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-      </div>`;
-  });
-  document.getElementById("newsFeed").innerHTML = html;
-})
-.catch(() => {
-  document.getElementById("newsFeed").innerHTML = "News feed unavailable.";
-});
-
-/* INCIDENT FEED (UNCHANGED) */
-const incidentKeywords = encodeURIComponent(`
-"security guard shot" OR
-"security officer shot" OR
-"security guard killed" OR
-"security officer killed" OR
-"security guard injured" OR
-"security officer injured" OR
-"security guard attacked" OR
-"security officer attacked" OR
-"security guard assaulted" OR
-"security officer assaulted" OR
-"private security shooting" OR
-"private security officer shot" OR
-"private security officer killed" OR
-"private security guard injured" OR
-"armed security guard shot" OR
-"armed security officer shot" OR
-"unarmed security guard attacked" OR
-"unarmed security officer attacked" OR
-"mall security shooting" OR
-"hospital security officer attacked" OR
-"hospital security guard assaulted" OR
-"school security officer attacked" OR
-"apartment security guard shot" OR
-"nightclub security guard shot" OR
-"bar security guard shot" OR
-"store security guard attacked" OR
-"retail security guard assaulted" OR
-"loss prevention officer attacked" OR
-"security guard stabbed" OR
-"security officer stabbed" OR
-"security guard line of duty death" OR
-"security officer line of duty death" OR
-"security guard incident" OR
-"security officer incident"
-`);
-
-fetch("https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=" + incidentKeywords + "&hl=en-US&gl=US&ceid=US:en")
-.then(res => res.json())
-.then(data => {
-  let html = "";
-  if (!data.items || data.items.length === 0) {
-    document.getElementById("incidentFeed").innerHTML = "No security officer incidents found.";
-    return;
-  }
-  data.items.slice(0,8).forEach(item => {
-    html += `
-      <div class="news-item">
-        <a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title}</a>
-        <div class="news-date">${new Date(item.pubDate).toLocaleDateString()}</div>
-      </div>`;
-  });
-  document.getElementById("incidentFeed").innerHTML = html;
-})
-.catch(() => {
-  document.getElementById("incidentFeed").innerHTML = "No security officer incidents found.";
-});
-
-</script>
-
 </body>
 </html>
